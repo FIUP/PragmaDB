@@ -27,10 +27,14 @@ else{
 echo<<<END
 \\subsection{Tracciamento Requisiti-Fonti}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{5cm}|m{5cm}<{\centering}|}
-\\hline 
-\\textbf{Id Requisito} & \\textbf{Fonti}\\\
-\\hline
+\begin{longtabu} to \\textwidth{>{\centering}m{5cm}m{5cm}}
+\\caption[Tracciamento Requisiti-Fonti]{Tracciamento Requisiti-Fonti}
+\\label{tabella:requi-fonti}
+\\endlastfoot
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline 
+\\textbf{Id Requisito}\cellcolor{tableHeader} & \\textbf{Fonti}\cellcolor{tableHeader}\\\
+%\hline
 \\endhead
 END;
 	//$query_ord="CALL sortForest('UseCase')";
@@ -40,9 +44,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Requisiti-Fonti]{Tracciamento Requisiti-Fonti}
-\\label{tabella:requi-fonti}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;
