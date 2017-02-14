@@ -31,10 +31,14 @@ else{
 echo<<<END
 \\subsection{Tracciamento Fonti-Requisiti}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{5cm}|m{5cm}<{\centering}|}
-\\hline 
-\\textbf{Fonte} & \\textbf{Id Requisiti}\\\
-\\hline
+\\begin{longtabu} to \\textwidth{>{\centering}m{5cm}m{5cm}}
+\\caption[Tracciamento Fonti-Requisiti]{Tracciamento Fonti-Requisiti}
+\\label{tabella:fonti-requi}
+\\endlastfoot
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline 
+\\textbf{Fonte}\cellcolor{tableHeader} & \\textbf{ID Requisiti}\cellcolor{tableHeader}\\\
+%\hline
 \\endhead
 END;
 	//$query_ord="CALL sortForest('Requisiti')";
@@ -57,9 +61,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Fonti-Requisiti]{Tracciamento Fonti-Requisiti}
-\\label{tabella:fonti-requi}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

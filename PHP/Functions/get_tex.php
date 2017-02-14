@@ -15,7 +15,7 @@ echo<<<END
 END;
 	while($requi_row=mysql_fetch_row($requi)){
 echo<<<END
-\\\
+\\newline
 & $requi_row[0]
 END;
 	}
@@ -40,7 +40,7 @@ echo<<<END
 END;
 	while($requi_row=mysql_fetch_row($requi)){
 echo<<<END
-\\\
+\\newline
 & $requi_row[0]
 END;
 	}
@@ -137,12 +137,12 @@ END;
 		}
 		while($row_requi=mysql_fetch_row($requi)){
 echo<<<END
-\\\
-& \\hyperlink{{$row_requi[0]}}{{$row_requi[0]}}
+\\newline
+\\hyperlink{{$row_requi[0]}}{{$row_requi[0]}}
 END;
 		}
 echo<<<END
-\\\ \\hline
+\\\ %\hline
 END;
 	}
 }
@@ -540,7 +540,7 @@ echo<<<END
 END;
 	if($row[3]==0){
 echo<<<END
- \\textcolor{Red}{\\textit{Non Soddisfatto}}
+ \\textcolor{red}{\\textit{Non Soddisfatto}}
 END;
 	}
 	else{
@@ -620,7 +620,7 @@ echo<<<END
 END;
 	while($uc_row=mysql_fetch_row($uc)){
 echo<<<END
-\\\
+\\newline
 & \\hyperref[{$uc_row[0]}]{{$uc_row[0]}}
 END;
 	}
@@ -649,7 +649,7 @@ END;
 		else{
 			if($row[5]==0){
 echo<<<END
- \\textcolor{Red}{\\textit{Non Superato}}
+ \\textcolor{red}{\\textit{Non Superato}}
 END;
 			}
 			else{
