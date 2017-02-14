@@ -554,6 +554,28 @@ echo<<<END
 END;
 }
 
+function requisitiArTex($conn, $row){
+	$query="SELECT u.IdUC
+			FROM RequisitiUC ruc JOIN (_MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto) ON ruc.UC=u.CodAuto
+			WHERE ruc.CodReq='$row[0]'
+			ORDER BY h.Position";
+	$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+echo<<<END
+
+\\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] & \\hyperlink{{$row[3]}}{{$row[3]}}
+END;
+	while($uc_row=mysql_fetch_row($uc)){
+echo<<<END
+\\newline
+\\hyperref[{$uc_row[0]}]{{$uc_row[0]}}
+END;
+	}
+echo<<<END
+\\\ %\hline
+
+END;
+}
+
 function requisitiClassiTex($conn, $row){
 	$query="SELECT c.PrefixNome
 			FROM RequisitiClasse rc JOIN Classe c ON rc.CodClass=c.CodAuto

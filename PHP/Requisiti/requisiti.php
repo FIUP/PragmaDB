@@ -29,7 +29,8 @@ echo<<<END
 					<aside id="export" class="widget">
 						<h4 class="widget-title">Esporta in LaTeX</h4>
 						<ul>
-							<li><a class="link-color-pers" href="$absurl/Requisiti/LaTeX/gettabellarequisiti.php">Tabella Requisiti</a></li>
+                            <li><a class="link-color-pers" href="$absurl/Requisiti/LaTeX/gettabellarequisitiAR.php">Tabella Requisiti AR</a></li>
+							<li><a class="link-color-pers" href="$absurl/Requisiti/LaTeX/gettabellarequisiti.php">Tabella Requisiti PDQ</a></li>
 							<li><a class="link-color-pers" href="$absurl/Requisiti/LaTeX/gettracciamentorequisitifonti.php">Tracciamento Requisiti-Fonti</a></li>
 							<li><a class="link-color-pers" href="$absurl/Requisiti/LaTeX/gettracciamentofontirequisiti.php">Tracciamento Fonti-Requisiti</a></li>
 							<li><a class="link-color-pers" href="$absurl/Requisiti/LaTeX/getriepilogorequisiti.php">Riepilogo Requisiti</a></li>

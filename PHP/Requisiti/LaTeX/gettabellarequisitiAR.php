@@ -13,19 +13,20 @@ if(empty($_SESSION['user'])){
 }
 else{
 	header('Content-type: application/x-tex');
-	header('Content-Disposition: attachment; filename="tabellaRequisitiPDQ.tex"');
+	header('Content-Disposition: attachment; filename="tabellaRequisiti_AR.tex"');
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
 	
 	$tipi=array('Funzionale','Prestazionale','Qualita','Vincolo');
 	$sections=array('Requisiti Funzionali','Requisiti Prestazionali','Requisiti di Qualità','Requisiti di Vincolo');
-	$headers=array('Id Requisito','Descrizione','Stato');
+	$headers=array('Id Requisito','Descrizione','Fonti');
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('Requisiti')";
 	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
 	for($i=0;$i<4;$i++){
-		$query="SELECT r1.CodAuto,r1.IdRequisito,r1.Descrizione,r1.Soddisfatto
-				FROM _MapRequisiti h JOIN Requisiti r1 ON h.CodAuto=r1.CodAuto
+        $query="SELECT r1.CodAuto,r1.IdRequisito,r1.Descrizione,f.Nome
+				FROM (_MapRequisiti h JOIN Requisiti r1 ON 
+                h.CodAuto=r1.CodAuto) JOIN Fonti f ON r1.Fonte=f.CodAuto
 				WHERE r1.Tipo='$tipi[$i]'
 				ORDER BY h.Position";
 		$requi=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
@@ -34,7 +35,7 @@ else{
 echo<<<END
 \\subsection{{$sections[$i]}}
 \\normalsize
-\begin{longtabu} to \\textwidth {c>{\centering}m{7cm}c}
+\begin{longtabu} to \\textwidth {c>{\centering}m{7cm}m{3cm}}
 \\caption[$sections[$i]]{{$sections[$i]}}
 \\label{tabella:req$i}
 \\endlastfoot
@@ -46,9 +47,9 @@ echo<<<END
 END;
 			//$query_ord="CALL sortForest('UseCase')";
 			//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-			requisitiTex($conn, $row);
+			//requisitiArTex($conn, $row);
 			while($row=mysql_fetch_row($requi)){
-				requisitiTex($conn, $row);
+				requisitiArTex($conn, $row);
 			}
 echo<<<END
 
