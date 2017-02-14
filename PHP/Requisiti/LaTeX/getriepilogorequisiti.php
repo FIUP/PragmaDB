@@ -32,17 +32,19 @@ else{
 echo<<<END
 \\subsection{Riepilogo Requisiti}
 \\normalsize
-\\begin{longtable}{|c|c|c|c|}
-\\hline 
-\\textbf{Tipo} & \\textbf{Obbligatorio} & \\textbf{Desiderabile} & \\textbf{Facoltativo}\\\
-\\hline
-Funzionale & $FO & $FD & $FF\\\ \\hline
-Prestazionale & $PO & $PD & $PF\\\ \\hline
-Di Qualità & $QO & $QD & $QF\\\ \\hline
-Di Vincolo & $VO & $VD & $VF\\\ \\hline
+\\begin{longtabu} to \\textwidth{cccc}
 \\caption[Riepilogo Requisiti]{Riepilogo Requisiti}
 \\label{tabella:riepilogorequi}
-\\end{longtable}
+\\endlastfoot
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
+\\textbf{Tipo}\cellcolor{tableHeader} & \\textbf{Obbligatorio}\cellcolor{tableHeader} & \\textbf{Desiderabile}\cellcolor{tableHeader} & \\textbf{Facoltativo}\cellcolor{tableHeader}\\\
+%\hline
+Funzionale & $FO & $FD & $FF\\\ %\hline
+Prestazionale & $PO & $PD & $PF\\\ %\hline
+Di Qualità & $QO & $QD & $QF\\\ %\hline
+Di Vincolo & $VO & $VD & $VF\\\ %\hline
+\\end{longtabu}
 \\clearpage
 
 END;
