@@ -34,10 +34,14 @@ else{
 echo<<<END
 \\subsection{{$sections[$i]}}
 \\normalsize
-\\begin{longtable}{|c|>{\centering}m{7cm}|c|}
-\\hline 
-\\textbf{{$headers[0]}} & \\textbf{{$headers[1]}} & \\textbf{{$headers[2]}}\\\
-\\hline
+\begin{longtabu} to \\textwidth {c>{\centering}m{7cm}c}
+\\caption[$sections[$i]]{{$sections[$i]}}
+\\label{tabella:req$i}
+\\endlastfoot
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline 
+\\textbf{{$headers[0]}}\cellcolor{tableHeader} & \\textbf{{$headers[1]}}\cellcolor{tableHeader} & \\textbf{{$headers[2]}}\cellcolor{tableHeader}\\\
+%\hline
 \\endhead
 END;
 			//$query_ord="CALL sortForest('UseCase')";
@@ -48,9 +52,8 @@ END;
 			}
 echo<<<END
 
-\\caption[$sections[$i]]{{$sections[$i]}}
-\\label{tabella:req$i}
-\\end{longtable}
+
+\\end{longtabu}
 \\clearpage
 
 END;

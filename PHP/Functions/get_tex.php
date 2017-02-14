@@ -549,7 +549,7 @@ echo<<<END
 END;
 	}
 echo<<<END
-\\\ \\hline
+\\\ %\hline
 
 END;
 }
@@ -621,11 +621,11 @@ END;
 	while($uc_row=mysql_fetch_row($uc)){
 echo<<<END
 \\newline
-& \\hyperref[{$uc_row[0]}]{{$uc_row[0]}}
+\\hyperref[{$uc_row[0]}]{{$uc_row[0]}}
 END;
 	}
 echo<<<END
-\\\ \\hline
+\\\ %\hline
 
 END;
 }
