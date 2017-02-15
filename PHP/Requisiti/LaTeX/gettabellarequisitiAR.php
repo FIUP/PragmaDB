@@ -47,7 +47,7 @@ echo<<<END
 END;
 			//$query_ord="CALL sortForest('UseCase')";
 			//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-			//requisitiArTex($conn, $row);
+			requisitiArTex($conn, $row);
 			while($row=mysql_fetch_row($requi)){
 				requisitiArTex($conn, $row);
 			}
