@@ -31,12 +31,12 @@ END;
 		if($row[3]!=null){
 echo<<<END
 
-\\begin{figure}[h]
-\\centering
-\\includegraphics[scale=0.7,keepaspectratio]{useCase/{{$row[3]}}.pdf}
+\\begin{figure}[H]
+\\capstart
+\\def\svgwidth{\columnwidth}
+\\input{../../../bin/img/ar/pdf_tex/{$row[3]}.pdf_tex}
 \\caption{{$row[1]}: {$row[2]}}
 \\end{figure}
-\\FloatBarrier
 END;
 		}
 		$query="SELECT a.Nome
