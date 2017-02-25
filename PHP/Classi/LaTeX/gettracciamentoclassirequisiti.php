@@ -25,10 +25,14 @@ else{
 echo<<<END
 \\subsection{Tracciamento Classi-Requisiti}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{10cm}|m{3cm}<{\centering}|}
-\\hline 
-\\textbf{Classe} & \\textbf{Requisiti}\\\
-\\hline
+\\begin{longtabu} to \\textwidth {|>{\centering}m{10cm}|m{3cm}<{\centering}|}
+\\caption[Tracciamento Classi-Requisiti]{Tracciamento Classi-Requisiti}
+\\label{tabella:class-requi}
+\\endlastfoot
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline 
+\\textbf{Classe}\cellcolor{tableHeader} & \\textbf{Requisiti}\cellcolor{tableHeader}\\\
+%\hline
 \\endhead
 END;
 	//$query_ord="CALL sortForest('Requisiti')";
@@ -38,9 +42,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Classi-Requisiti]{Tracciamento Classi-Requisiti}
-\\label{tabella:class-requi}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

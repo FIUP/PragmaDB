@@ -27,10 +27,14 @@ else{
 echo<<<END
 \\subsection{Tracciamento Requisiti-Classi}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{3cm}|m{10cm}<{\centering}|}
-\\hline 
-\\textbf{Requisito} & \\textbf{Classi}\\\
-\\hline
+\\begin{longtabu} to \\textwidth {|>{\centering}m{3cm}|m{10cm}<{\centering}|}
+\\caption[Tracciamento Requisiti-Classi]{Tracciamento Requisiti-Classi}
+\\label{tabella:requi-class}
+\\endlastfoot
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline 
+\\textbf{Requisito}\cellcolor{tableHeader} & \\textbf{Classi}\cellcolor{tableHeader}\\\
+%\hline
 \\endhead
 END;
 	while($row_requi=mysql_fetch_row($requi)){
@@ -38,9 +42,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Requisiti-Classi]{Tracciamento Requisiti-Classi}
-\\label{tabella:requi-class}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;
