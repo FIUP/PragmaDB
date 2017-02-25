@@ -593,7 +593,7 @@ END;
 		$prefix=$cl_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
-\\\
+\\newline
 & \\hyperref[\\nogloxy{{$cl_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
 END;
 	}
@@ -620,7 +620,7 @@ END;
 		$prefix=$pkg_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
-\\\
+\\newline
 & \\hyperref[\\nogloxy{{$pkg_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
 END;
 	}
