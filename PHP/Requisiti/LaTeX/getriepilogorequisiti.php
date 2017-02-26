@@ -32,13 +32,14 @@ else{
 echo<<<END
 \\subsection{Riepilogo Requisiti}
 \\normalsize
-\\begin{longtabu} to \\textwidth{cccc}
+\\begin{longtabu} to \\textwidth {cccc}
 \\caption[Riepilogo Requisiti]{Riepilogo Requisiti}
 \\label{tabella:riepilogorequi}
 \\endlastfoot
+\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
 %\hline
-\\textbf{Tipo}\cellcolor{tableHeader} & \\textbf{Obbligatorio}\cellcolor{tableHeader} & \\textbf{Desiderabile}\cellcolor{tableHeader} & \\textbf{Facoltativo}\cellcolor{tableHeader}\\\
+\\textbf{Tipo} & \\textbf{Obbligatorio} & \\textbf{Desiderabile} & \\textbf{Facoltativo}\\\
 %\hline
 Funzionale & $FO & $FD & $FF\\\ %\hline
 Prestazionale & $PO & $PD & $PF\\\ %\hline

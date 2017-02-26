@@ -27,10 +27,15 @@ else{
 echo<<<END
 \\subsection{Tracciamento Requisiti-Test di Validazione}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{5cm}|m{5cm}<{\centering}|}
-\\hline 
+\\begin{longtabu} to \\textwidth {>{\centering}m{5cm}m{5cm}<{\centering}}
+\\caption[Tracciamento Requisiti-Test di Validazione]{Tracciamento Requisiti-Test di Validazione}
+\\label{tabella:requi-tv}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{Requisito} & \\textbf{Test}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	while($row_requi=mysql_fetch_row($requi)){
@@ -41,9 +46,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Requisiti-Test di Validazione]{Tracciamento Requisiti-Test di Validazione}
-\\label{tabella:requi-tv}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

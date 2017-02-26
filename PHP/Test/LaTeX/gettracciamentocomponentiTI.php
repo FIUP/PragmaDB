@@ -25,23 +25,26 @@ else{
 echo<<<END
 \\subsection{Tracciamento Componenti-Test di Integrazione}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{9cm}|m{3cm}<{\centering}|}
-\\hline 
+\\begin{longtabu} to \\textwidth {>{\centering}m{9cm}m{3cm}<{\centering}}
+\\caption[Tracciamento Componenti-Test di Integrazione]{Tracciamento Componenti-Test di Integrazione}
+\\label{tabella:pkg-ti}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{Componente} & \\textbf{Test}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	while($row_pkg=mysql_fetch_row($pkg)){
 echo<<<END
 
-\\nogloxy{\\texttt{{$row_pkg[0]}}} & \\hyperlink{{$row_pkg[1]}}{{$row_pkg[1]}}\\\ \\hline
+\\nogloxy{\\texttt{{$row_pkg[0]}}} & \\hyperlink{{$row_pkg[1]}}{{$row_pkg[1]}}\\\ %\hline
 END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Componenti-Test di Integrazione]{Tracciamento Componenti-Test di Integrazione}
-\\label{tabella:pkg-ti}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

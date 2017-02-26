@@ -26,10 +26,15 @@ else{
 echo<<<END
 \\subsection{Tracciamento Test di Unità-Metodi}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{1cm}|m{12cm}<{\centering}|}
-\\hline 
+\\begin{longtabu} to \\textwidth {>{\centering}m{1cm}m{12cm}<{\centering}}
+\\caption[Tracciamento Test di Unità-Metodi]{Tracciamento Test di Unità-Metodi}
+\\label{tabella:tu-met}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{Test} & \\textbf{Metodi}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	while($row_tu=mysql_fetch_row($tu)){
@@ -56,15 +61,13 @@ echo<<<END
 END;
 		}
 echo<<<END
- \\hline
+ %\hline
 
 END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Test di Unità-Metodi]{Tracciamento Test di Unità-Metodi}
-\\label{tabella:tu-met}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

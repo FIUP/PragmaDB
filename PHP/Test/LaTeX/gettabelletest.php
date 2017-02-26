@@ -48,10 +48,15 @@ echo<<<END
 \\subsection{{$sections[$ind]}}
 \\input{sezioni/test_{$hook[$ind]}.tex}
 \\normalsize
-\\begin{longtable}{|c|>{}m{8cm}|c|}
-\\hline 
+\\begin{longtabu} to \\textwidth {c>{}m{8cm}c}
+\\caption[$sections[$ind]]{{$sections[$ind]}}
+\\label{tabella:test$ind}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{{$headers[0]}} & \\textbf{{$headers[1]}} & \\textbf{{$headers[2]}}\\\
-\\hline
+%\hline
 \\endhead
 END;
 			testTex($conn, $row);
@@ -60,9 +65,7 @@ END;
 			}
 echo<<<END
 
-\\caption[$sections[$ind]]{{$sections[$ind]}}
-\\label{tabella:test$ind}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 

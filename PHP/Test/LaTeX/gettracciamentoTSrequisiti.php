@@ -27,10 +27,15 @@ else{
 echo<<<END
 \\subsection{Tracciamento Test di Sistema-Requisiti}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{5cm}|m{5cm}<{\centering}|}
-\\hline 
+\\begin{longtable} to \\textwidth {>{\centering}m{5cm}m{5cm}<{\centering}}
+\\caption[Tracciamento Test di Sistema-Requisiti]{Tracciamento Test di Sistema-Requisiti}
+\\label{tabella:ts-requi}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{Test} & \\textbf{Requisito}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	while($row_ts=mysql_fetch_row($ts)){
@@ -41,9 +46,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Test di Sistema-Requisiti]{Tracciamento Test di Sistema-Requisiti}
-\\label{tabella:ts-requi}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

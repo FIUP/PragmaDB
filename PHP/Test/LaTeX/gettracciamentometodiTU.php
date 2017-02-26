@@ -25,10 +25,15 @@ else{
 echo<<<END
 \\subsection{Tracciamento Metodi-Test di Unità}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{12cm}|m{1cm}<{\centering}|}
-\\hline 
+\\begin{longtabu} to \\textwidth {>{\centering}m{12cm}m{1cm}<{\centering}}
+\\caption[Tracciamento Metodi-Test di Unità]{Tracciamento Metodi-Test di Unità}
+\\label{tabella:met-tu}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{Metodo} & \\textbf{Test}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	while($riga=mysql_fetch_row($met)){
@@ -54,9 +59,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Metodi-Test di Unità]{Tracciamento Metodi-Test di Unità}
-\\label{tabella:met-tu}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

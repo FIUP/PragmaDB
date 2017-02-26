@@ -25,23 +25,26 @@ else{
 echo<<<END
 \\subsection{Tracciamento Test di Integrazione-Componenti}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{3cm}|m{9cm}<{\centering}|}
-\\hline 
+\\begin{longtabu} to \\textwidth {>{\centering}m{3cm}m{9cm}<{\centering}}
+\\caption[Tracciamento Test di Integrazione-Componenti]{Tracciamento Test di Integrazione-Componenti}
+\\label{tabella:ts-requi}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{Test} & \\textbf{Componente}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	while($row_ti=mysql_fetch_row($ti)){
 echo<<<END
 
-\\hyperlink{{$row_ti[0]}}{{$row_ti[0]}} & \\nogloxy{\\texttt{{$row_ti[1]}}}\\\ \\hline
+\\hyperlink{{$row_ti[0]}}{{$row_ti[0]}} & \\nogloxy{\\texttt{{$row_ti[1]}}}\\\ %\hline
 END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Test di Integrazione-Componenti]{Tracciamento Test di Integrazione-Componenti}
-\\label{tabella:ts-requi}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;
