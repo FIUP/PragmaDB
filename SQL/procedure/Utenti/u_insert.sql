@@ -16,7 +16,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 DELIMITER $
 
 DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(4), Nome VARCHAR(12), Cognome VARCHAR(9), Password VARCHAR(40) )
+CREATE PROCEDURE insertUtente ( IN Username VARCHAR(8), Nome VARCHAR(15), Cognome VARCHAR(9), Password VARCHAR(40) )
 BEGIN
     START TRANSACTION;
     INSERT INTO Utenti(Username, Nome, Cognome, Password)
