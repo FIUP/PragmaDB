@@ -31,8 +31,8 @@ echo<<<END
 \\caption[Tracciamento Requisiti-Test di Sistema]{Tracciamento Requisiti-Test di Sistema}
 \\label{tabella:requi-tv}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Requisito} & \\textbf{Test}\\\
 %\hline
@@ -41,7 +41,7 @@ END;
 	while($row_requi=mysql_fetch_row($requi)){
 echo<<<END
 
-$row_requi[0] & \\hyperlink{{$row_requi[1]}}{{$row_requi[1]}}\\\ \\hline
+$row_requi[0] & \\hyperlink{{$row_requi[1]}}{{$row_requi[1]}}\\\ %\hline
 END;
 	}
 echo<<<END

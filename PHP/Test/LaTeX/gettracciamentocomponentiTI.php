@@ -29,8 +29,8 @@ echo<<<END
 \\caption[Tracciamento Componenti-Test di Integrazione]{Tracciamento Componenti-Test di Integrazione}
 \\label{tabella:pkg-ti}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Componente} & \\textbf{Test}\\\
 %\hline

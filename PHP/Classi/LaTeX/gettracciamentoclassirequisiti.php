@@ -30,8 +30,9 @@ echo<<<END
 \\label{tabella:class-requi}
 \\endlastfoot
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\\rowcolor{tableHeader}
 %\hline 
-\\textbf{Classe}\cellcolor{tableHeader} & \\textbf{Requisiti}\cellcolor{tableHeader}\\\
+\\textbf{Classe} & \\textbf{Requisiti}\\\
 %\hline
 \\endhead
 END;

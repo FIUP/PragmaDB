@@ -30,8 +30,8 @@ echo<<<END
 \\caption[Tracciamento Test di Unità-Metodi]{Tracciamento Test di Unità-Metodi}
 \\label{tabella:tu-met}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Test} & \\textbf{Metodi}\\\
 %\hline

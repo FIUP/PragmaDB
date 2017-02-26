@@ -52,8 +52,8 @@ echo<<<END
 \\caption[$sections[$ind]]{{$sections[$ind]}}
 \\label{tabella:test$ind}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{{$headers[0]}} & \\textbf{{$headers[1]}} & \\textbf{{$headers[2]}}\\\
 %\hline

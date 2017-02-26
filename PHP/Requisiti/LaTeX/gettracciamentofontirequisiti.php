@@ -36,8 +36,9 @@ echo<<<END
 \\label{tabella:fonti-requi}
 \\endlastfoot
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline 
-\\textbf{Fonte}\cellcolor{tableHeader} & \\textbf{ID Requisiti}\cellcolor{tableHeader}\\\
+\\textbf{Fonte} & \\textbf{ID Requisiti}\\\
 %\hline
 \\endhead
 END;

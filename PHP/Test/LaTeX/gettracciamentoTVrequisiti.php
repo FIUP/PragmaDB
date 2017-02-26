@@ -31,8 +31,8 @@ echo<<<END
 \\caption[Tracciamento Test di Validazione-Requisiti]{Tracciamento Test di Validazione-Requisiti}
 \\label{tabella:tv-requi}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Test} & \\textbf{Requisito}\\\
 %\hline
@@ -41,7 +41,7 @@ END;
 	while($row_tv=mysql_fetch_row($tv)){
 echo<<<END
 
-\\hyperlink{{$row_tv[0]}}{{$row_tv[0]}} & $row_tv[1]\\\ \\hline
+\\hyperlink{{$row_tv[0]}}{{$row_tv[0]}} & $row_tv[1]\\\ %\hline
 END;
 	}
 echo<<<END

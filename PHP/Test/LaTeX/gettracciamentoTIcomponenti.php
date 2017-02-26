@@ -29,8 +29,8 @@ echo<<<END
 \\caption[Tracciamento Test di Integrazione-Componenti]{Tracciamento Test di Integrazione-Componenti}
 \\label{tabella:ts-requi}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Test} & \\textbf{Componente}\\\
 %\hline

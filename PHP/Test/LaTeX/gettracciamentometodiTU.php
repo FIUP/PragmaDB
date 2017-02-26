@@ -29,8 +29,8 @@ echo<<<END
 \\caption[Tracciamento Metodi-Test di Unità]{Tracciamento Metodi-Test di Unità}
 \\label{tabella:met-tu}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Metodo} & \\textbf{Test}\\\
 %\hline

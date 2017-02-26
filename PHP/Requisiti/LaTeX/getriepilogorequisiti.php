@@ -36,8 +36,8 @@ echo<<<END
 \\caption[Riepilogo Requisiti]{Riepilogo Requisiti}
 \\label{tabella:riepilogorequi}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Tipo} & \\textbf{Obbligatorio} & \\textbf{Desiderabile} & \\textbf{Facoltativo}\\\
 %\hline

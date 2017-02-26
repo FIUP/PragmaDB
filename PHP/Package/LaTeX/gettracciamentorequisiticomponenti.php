@@ -33,8 +33,8 @@ echo<<<END
 \\caption[Tracciamento Requisiti-Componenti]{Tracciamento Requisiti-Componenti}
 \\label{tabella:requi-pack}
 \\endlastfoot
-\\rowcolor{tableHeader}
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline
 \\textbf{Requisito} & \\textbf{Componenti}\\\
 %\hline

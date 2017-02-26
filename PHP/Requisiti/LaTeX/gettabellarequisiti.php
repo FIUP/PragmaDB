@@ -39,8 +39,9 @@ echo<<<END
 \\label{tabella:req$i}
 \\endlastfoot
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+\\rowcolor{tableHeader}
 %\hline 
-\\textbf{{$headers[0]}}\cellcolor{tableHeader} & \\textbf{{$headers[1]}}\cellcolor{tableHeader} & \\textbf{{$headers[2]}}\cellcolor{tableHeader}\\\
+\\textbf{{$headers[0]}} & \\textbf{{$headers[1]}} & \\textbf{{$headers[2]}}\\\
 %\hline
 \\endhead
 END;
