@@ -29,10 +29,15 @@ else{
 echo<<<END
 \\subsection{Tracciamento Requisiti-Componenti}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{3cm}|m{10cm}<{\centering}|}
-\\hline 
+\\begin{longtabu} to \\textwidth {>{\centering}m{3cm}m{10cm}<{\centering}}
+\\caption[Tracciamento Requisiti-Componenti]{Tracciamento Requisiti-Componenti}
+\\label{tabella:requi-pack}
+\\endlastfoot
+\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline
 \\textbf{Requisito} & \\textbf{Componenti}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	while($row_requi=mysql_fetch_row($requi)){
@@ -40,9 +45,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Requisiti-Componenti]{Tracciamento Requisiti-Componenti}
-\\label{tabella:requi-pack}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

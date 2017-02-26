@@ -28,10 +28,15 @@ else{
 echo<<<END
 \\subsection{Tracciamento Componenti-Requisiti}
 \\normalsize
-\\begin{longtable}{|>{\centering}m{10cm}|m{3cm}<{\centering}|}
-\\hline 
+\\begin{longtabu} to \\textwidth{>{\centering}m{10cm}m{3cm}<{\centering}}
+\\caption[Tracciamento Componenti-Requisiti]{Tracciamento Componenti-Requisiti}
+\\label{tabella:pack-requi}
+\\endlastfoot
+\\\rowcolor{tableHeader}
+\\rowfont{\bfseries\sffamily\leavevmode\color{white}}
+%\hline 
 \\textbf{Componente} & \\textbf{Requisiti}\\\
-\\hline
+%\hline
 \\endhead
 END;
 	//$query_ord="CALL sortForest('Requisiti')";
@@ -41,9 +46,7 @@ END;
 	}
 echo<<<END
 
-\\caption[Tracciamento Componenti-Requisiti]{Tracciamento Componenti-Requisiti}
-\\label{tabella:pack-requi}
-\\end{longtable}
+\\end{longtabu}
 \\clearpage
 
 END;

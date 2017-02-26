@@ -27,7 +27,7 @@ else{
 echo<<<END
 \\subsection{Tracciamento Requisiti-Classi}
 \\normalsize
-\\begin{longtabu} to \\textwidth {|>{\centering}m{3cm}|m{10cm}<{\centering}|}
+\\begin{longtabu} to \\textwidth {>{\centering}m{3cm}m{10cm}<{\centering}}
 \\caption[Tracciamento Requisiti-Classi]{Tracciamento Requisiti-Classi}
 \\label{tabella:requi-class}
 \\endlastfoot
