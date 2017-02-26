@@ -536,9 +536,9 @@ END;
 function requisitiTex($conn, $row){
 echo<<<END
 
-\\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] &
+\\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] & $row[3] &
 END;
-	if($row[3]==0){
+	if($row[4]==0){
 echo<<<END
  \\textcolor{red}{\\textit{Non Soddisfatto}}
 END;
@@ -562,7 +562,7 @@ function requisitiArTex($conn, $row){
 	$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
 echo<<<END
 
-\\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] & \\hyperlink{{$row[3]}}{{$row[3]}}
+\\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] & $row[3] &\\hyperlink{{$row[4]}}{{$row[4]}}
 END;
 	while($uc_row=mysql_fetch_row($uc)){
 echo<<<END
