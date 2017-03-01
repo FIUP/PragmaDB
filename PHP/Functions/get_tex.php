@@ -202,19 +202,19 @@ END;
 function packageClassiCommonTex($conn, $riga, $flag){
 echo<<<END
 
-\\subsubsubsection{\\nogloxy{{$riga[1]}}}
-\\label{\\nogloxy{{$riga[1]}}}
+\\paragraph{{$riga[1]}}
+\\label{{$riga[1]}}
 END;
 
 	if(($flag==true) && ($riga[4]!=null)){
 echo<<<END
 
-\\begin{figure}[h]
-\\centering
-\\nogloxy{\\includegraphics[scale=0.4,keepaspectratio]{diagrammi/classi/{{$riga[4]}}.pdf}}
-\\caption{\\nogloxy{{$riga[1]}}}
+\\begin{figure}[H]
+\\capstart
+\\def\svgwidth{\columnwidth}
+\\input{../../../bin/img/st/package/pdf_tex/{$row[4]}.pdf_tex}
+\\caption{{$row[1]}}
 \\end{figure}
-\\FloatBarrier
 END;
 	}
 echo<<<END
@@ -241,12 +241,12 @@ echo<<<END
 
 \\item \\textbf{Classi ereditate}:
 \\begin{itemize}
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		while($riga_sub=mysql_fetch_row($padri)){
 echo<<<END
 
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		}
 echo<<<END
@@ -265,12 +265,12 @@ echo<<<END
 
 \\item \\textbf{Sottoclassi}:
 \\begin{itemize}
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		while($riga_sub=mysql_fetch_row($subclassi)){
 echo<<<END
 
-\\item \\hyperref[\\nogloxy{{$riga_sub[0]}}]{\\nogloxy{\\texttt{{$riga_sub[1]}}}}
+\\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
 		}
 echo<<<END
@@ -299,28 +299,28 @@ END;
 		if($riga_in[0]!=null){
 echo<<<END
 
-\\item \\textit{IN} \\hyperref[\\nogloxy{{$riga_in[0]}}]{\\nogloxy{\\texttt{{$riga_in[1]}}}}\\\
+\\item \\textit{IN} \\hyperref[{$riga_in[0]}]{\\texttt{{$riga_in[1]}}}\\\
 $riga_in[2]
 END;
 		}
 		while($riga_in=mysql_fetch_row($in)){
 echo<<<END
 
-\\item \\textit{IN} \\hyperref[\\nogloxy{{$riga_in[0]}}]{\\nogloxy{\\texttt{{$riga_in[1]}}}}\\\
+\\item \\textit{IN} \\hyperref[{$riga_in[0]}]{\\texttt{{$riga_in[1]}}}\\\
 $riga_in[2]
 END;
 		}
 		if($riga_out[0]!=null){
 echo<<<END
 
-\\item \\textit{OUT} \\hyperref[\\nogloxy{{$riga_out[0]}}]{\\nogloxy{\\texttt{{$riga_out[1]}}}}\\\
+\\item \\textit{OUT} \\hyperref[{$riga_out[0]}]{\\texttt{{$riga_out[1]}}}\\\
 $riga_out[2]
 END;
 		}
 		while($riga_out=mysql_fetch_row($out)){
 echo<<<END
 
-\\item \\textit{OUT} \\hyperref[\\nogloxy{{$riga_out[0]}}]{\\nogloxy{\\texttt{{$riga_out[1]}}}}\\\
+\\item \\textit{OUT} \\hyperref[{$riga_out[0]}]{\\texttt{{$riga_out[1]}}}\\\
 $riga_out[2]
 END;
 		}

@@ -33,7 +33,7 @@ echo<<<END
 \\label{tabella:pack-requi}
 \\endlastfoot
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
-\\\rowcolor{tableHeader}
+\\rowcolor{tableHeader}
 %\hline 
 \\textbf{Componente} & \\textbf{Requisiti}\\\
 %\hline
