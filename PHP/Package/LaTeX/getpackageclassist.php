@@ -24,6 +24,7 @@ else{
 	$pack=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
 	while($row=mysql_fetch_row($pack)){
 echo<<<END
+\\section{Componenti e Classi}
 \\subsection{{$row[1]}}
 \\label{{$row[1]}}
 \\subsubsection{Informazioni generali}
