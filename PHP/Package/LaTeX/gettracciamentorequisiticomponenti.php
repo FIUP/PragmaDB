@@ -29,7 +29,7 @@ else{
 echo<<<END
 \\subsection{Tracciamento Requisiti-Componenti}
 \\normalsize
-\\begin{longtabu} to \\textwidth {>{\centering}m{3cm}m{10cm}<{\centering}}
+\\begin{longtabu} to \\textwidth {>{\centering}m{3cm}m{10cm}}
 \\caption[Tracciamento Requisiti-Componenti]{Tracciamento Requisiti-Componenti}
 \\label{tabella:requi-pack}
 \\endlastfoot

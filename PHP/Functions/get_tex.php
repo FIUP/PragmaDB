@@ -11,16 +11,15 @@ function classiRequisitiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-\\hyperref[\\nogloxy{{$row[1]}}]{\\nogloxy{\\texttt{{$prefix}}}} & $requi_row[0]
+\\hyperref[{$row[1]}]{\\texttt{{$prefix}}} & $requi_row[0]
 END;
 	while($requi_row=mysql_fetch_row($requi)){
 echo<<<END
-\\newline
-& $requi_row[0]
+\\newline $requi_row[0]
 END;
 	}
 echo<<<END
-\\\ \\hline
+\\\ %\hline
 
 END;
 }
@@ -36,16 +35,15 @@ function componentiRequisitiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-\\hyperref[\\nogloxy{{$row[1]}}]{\\nogloxy{\\texttt{{$prefix}}}} & $requi_row[0]
+\\hyperref[{$row[1]}]{\\texttt{{$prefix}}} & $requi_row[0]
 END;
 	while($requi_row=mysql_fetch_row($requi)){
 echo<<<END
-\\newline
-& $requi_row[0]
+\\newline $requi_row[0]
 END;
 	}
 echo<<<END
-\\\ \\hline
+\\\ %\hline
 
 END;
 }
@@ -587,18 +585,17 @@ function requisitiClassiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-$row[1] & \\hyperref[\\nogloxy{{$cl_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+$row[1] & \\hyperref[{$cl_row[0]}]{\\texttt{{$prefix}}}
 END;
 	while($cl_row=mysql_fetch_row($cl)){
 		$prefix=$cl_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
-\\newline
-& \\hyperref[\\nogloxy{{$cl_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+\\newline \\hyperref[{$cl_row[0]}]{\\texttt{{$prefix}}}
 END;
 	}
 echo<<<END
-\\\ \\hline
+\\\ %\hline
 
 END;
 }
@@ -614,18 +611,17 @@ function requisitiComponentiTex($conn, $row){
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
-$row[1] & \\hyperref[\\nogloxy{{$pkg_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+$row[1] & \\hyperref[{$pkg_row[0]}]{\\texttt{{$prefix}}}
 END;
 	while($pkg_row=mysql_fetch_row($pkg)){
 		$prefix=$pkg_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
-\\newline
-& \\hyperref[\\nogloxy{{$pkg_row[0]}}]{\\nogloxy{\\texttt{{$prefix}}}}
+\\newline \\hyperref[{$pkg_row[0]}]{\\texttt{{$prefix}}}
 END;
 	}
 echo<<<END
-\\\ \\hline
+\\\ %\hline
 
 END;
 }

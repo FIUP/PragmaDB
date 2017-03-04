@@ -32,7 +32,7 @@ echo<<<END
 \\label{tabella:requi-class}
 \\endlastfoot
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
-\\\rowcolor{tableHeader}
+\\rowcolor{tableHeader}
 %\hline 
 \\textbf{Requisito} & \\textbf{Classi}\\\
 %\hline

@@ -25,12 +25,12 @@ else{
 echo<<<END
 \\subsection{Tracciamento Classi-Requisiti}
 \\normalsize
-\\begin{longtabu} to \\textwidth {>{\centering}m{10cm}m{3cm}<{\centering}}
+\\begin{longtabu} to \\textwidth {>{\centering}m{10cm}m{3cm}}
 \\caption[Tracciamento Classi-Requisiti]{Tracciamento Classi-Requisiti}
 \\label{tabella:class-requi}
 \\endlastfoot
 \\rowfont{\bfseries\sffamily\leavevmode\color{white}}
-\\\rowcolor{tableHeader}
+\\rowcolor{tableHeader}
 %\hline 
 \\textbf{Classe} & \\textbf{Requisiti}\\\
 %\hline
