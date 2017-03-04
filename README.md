@@ -1,4 +1,4 @@
-# PragmaDB
+# PragmaDB - Visions Team Edition
 
 Software per la gestione di documenti di progetto, in particolare permette di gestire:
 * Requisiti;
@@ -10,6 +10,9 @@ Software per la gestione di documenti di progetto, in particolare permette di ge
 * Package;
 * Metriche;
 * Test.
+
+Questa edizione del famoso software di tracciamento permette di utilizzare agevolmente i 
+package LaTeX tabu e longtabu, per ottenere tabelle di elevato impatto estetico.
 
 ## Prerequisiti
 Per utilizzare PragmaDB è necessario avere installato sulla macchina
