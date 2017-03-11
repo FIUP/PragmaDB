@@ -16,7 +16,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 DELIMITER $
 
 DROP PROCEDURE IF EXISTS insertRT $
-CREATE PROCEDURE insertRT (IN CodAuto INT(5) , Utente VARCHAR(8))
+CREATE PROCEDURE insertRT (IN CodAuto INT(5) , Utente VARCHAR(10))
 BEGIN
     DECLARE lastIdTrack VARCHAR(10);
     SET lastIdTrack = findLastReqTracking(CodAuto);

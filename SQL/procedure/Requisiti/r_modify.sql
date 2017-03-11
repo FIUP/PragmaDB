@@ -24,7 +24,7 @@ DELIMITER $
  solo Padre,Tipo, Importanza, UCcorrelati possono essere NULL, gli altri vengono sempre passati anche se non cambiano
  Modified= indica se modificato almeno un campo diverso dai 4 sopra indicati(cioè Descrizione,Stato,Implementato e Fonte*/
 DROP PROCEDURE IF EXISTS modifyRequisito $
-CREATE PROCEDURE modifyRequisito ( IN CodAuto   INT(5), Descrizione VARCHAR(10000), Tipo  ENUM('Funzionale','Vincolo','Qualita','Prestazionale'), Importanza  ENUM('Obbligatorio','Desiderabile','Facoltativo'), Padre INT(5), Stato  BOOL , Implementato BOOL , Soddisfatto  BOOL, Fonte VARCHAR(10), Utente VARCHAR(8), Modified BOOLEAN, UCCorrelati VARCHAR(1000))
+CREATE PROCEDURE modifyRequisito ( IN CodAuto   INT(5), Descrizione VARCHAR(10000), Tipo  ENUM('Funzionale','Vincolo','Qualita','Prestazionale'), Importanza  ENUM('Obbligatorio','Desiderabile','Facoltativo'), Padre INT(5), Stato  BOOL , Implementato BOOL , Soddisfatto  BOOL, Fonte VARCHAR(10), Utente VARCHAR(10), Modified BOOLEAN, UCCorrelati VARCHAR(1000))
 BEGIN/*se CodAuto non coincide -> l'update non fa nulla*/
     DECLARE last VARCHAR(20);
     DECLARE legal TINYINT(1) DEFAULT 1;

@@ -34,7 +34,7 @@ BEGIN
 END $
 
 DROP PROCEDURE IF EXISTS insertListRequisiti $
-CREATE PROCEDURE insertListRequisiti ( IN CodUC VARCHAR(20), IN ReqL VARCHAR(1000), IN Utente VARCHAR(8)) 
+CREATE PROCEDURE insertListRequisiti ( IN CodUC VARCHAR(20), IN ReqL VARCHAR(1000), IN Utente VARCHAR(10)) 
 BEGIN
 	DECLARE CodReq INT(5) DEFAULT 0;
 	WHILE ReqL <> ''/*RequisitiUC*/
@@ -46,7 +46,7 @@ BEGIN
 END $
 
 DROP PROCEDURE IF EXISTS updateReq_on_delete $
-CREATE PROCEDURE updateReq_on_delete (IN Cod INT(5), IN Utente VARCHAR(8))
+CREATE PROCEDURE updateReq_on_delete (IN Cod INT(5), IN Utente VARCHAR(10))
 BEGIN
     DECLARE done INT DEFAULT 0;
     DECLARE next INT(5);

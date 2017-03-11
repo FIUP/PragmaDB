@@ -16,7 +16,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 DELIMITER $
 
 DROP PROCEDURE IF EXISTS changeParent $
-CREATE PROCEDURE changeParent( IN CodAuto INT(5), Padre INT(5), Utente VARCHAR(4))
+CREATE PROCEDURE changeParent( IN CodAuto INT(5), Padre INT(5), Utente VARCHAR(10))
 BEGIN
     DECLARE IdRequisito VARCHAR(20);
     DECLARE oldId VARCHAR(20);
@@ -42,7 +42,7 @@ BEGIN
 END $
 
 DROP PROCEDURE IF EXISTS changeTipo $
-CREATE PROCEDURE changeTipo (CodAuto INT(5), Tipo ENUM('Funzionale','Vincolo','Qualita','Prestazionale'), Padre INT(5), Utente VARCHAR(4))
+CREATE PROCEDURE changeTipo (CodAuto INT(5), Tipo ENUM('Funzionale','Vincolo','Qualita','Prestazionale'), Padre INT(5), Utente VARCHAR(10))
 BEGIN 
     DECLARE newId VARCHAR(20);
     DECLARE oldId VARCHAR(20);
@@ -70,7 +70,7 @@ BEGIN
 END$ 
 
 DROP PROCEDURE IF EXISTS changeImportanza $
-CREATE PROCEDURE changeImportanza (CodAuto INT(5), Importanza ENUM('Obbligatorio','Desiderabile','Facoltativo'), Utente VARCHAR(4))
+CREATE PROCEDURE changeImportanza (CodAuto INT(5), Importanza ENUM('Obbligatorio','Desiderabile','Facoltativo'), Utente VARCHAR(10))
 BEGIN 
     DECLARE newId VARCHAR(20);
     START TRANSACTION;
