@@ -12,7 +12,7 @@ if(isset($_REQUEST['submit'])){
 	$user=$_POST["username"];
 	$pwd=$_POST["password"];
 	$db=get_info($user);
-	if(($user!=null) && ($pwd!=null) && (sha1($pwd) == $db[0])){
+	if(($user!=null) && ($pwd!=null) && (md5($pwd) == $db[0])){
 		$_SESSION['user']=$user;
 		$_SESSION['nome']=$db[1];
 		$_SESSION['cognome']=$db[2];

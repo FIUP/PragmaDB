@@ -20,7 +20,7 @@ CREATE PROCEDURE modifyUseCase
 ( CodAuto INT(5), Nome  VARCHAR(300), Diagramma   VARCHAR(50), Descrizione VARCHAR(10000), 
     Precondizioni  VARCHAR(10000), Postcondizioni VARCHAR(10000), Padre INT(5), 
     ScenarioPrincipale  VARCHAR(10000), Inclusioni VARCHAR(5000), Estensioni VARCHAR(5000),
-    ScenariAlternativi VARCHAR(10000), ReqCorrelati VARCHAR(1000), AttoriCorrelati VARCHAR(60), Utente VARCHAR(4))
+    ScenariAlternativi VARCHAR(10000), ReqCorrelati VARCHAR(1000), AttoriCorrelati VARCHAR(60), Utente VARCHAR(8))
 BEGIN
     DECLARE last VARCHAR(20);
     DECLARE oldPadre INT(5);

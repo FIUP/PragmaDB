@@ -16,7 +16,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 DELIMITER $
 
 DROP PROCEDURE IF EXISTS insertRequisito $
-CREATE PROCEDURE insertRequisito ( IN Utente VARCHAR(4), Descrizione VARCHAR(10000), Tipo ENUM('Funzionale','Vincolo','Qualita','Prestazionale'), Importanza  ENUM('Obbligatorio','Desiderabile','Facoltativo'), Padre INT(5), Stato BOOL, Implementato BOOL, Soddisfatto  BOOL, IdFonte INT(5), UCCorrelati VARCHAR(1000))
+CREATE PROCEDURE insertRequisito ( IN Utente VARCHAR(8), Descrizione VARCHAR(10000), Tipo ENUM('Funzionale','Vincolo','Qualita','Prestazionale'), Importanza  ENUM('Obbligatorio','Desiderabile','Facoltativo'), Padre INT(5), Stato BOOL, Implementato BOOL, Soddisfatto  BOOL, IdFonte INT(5), UCCorrelati VARCHAR(1000))
 BEGIN
     DECLARE legal TINYINT DEFAULT 1;
     DECLARE IdRequisito VARCHAR(20);
