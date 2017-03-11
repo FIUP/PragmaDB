@@ -16,7 +16,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 DELIMITER $
 
 DROP PROCEDURE IF EXISTS insertAttore $
-CREATE PROCEDURE insertAttore ( IN Nome VARCHAR(20), Descrizione VARCHAR(10000))
+CREATE PROCEDURE insertAttore ( IN Nome VARCHAR(200), Descrizione VARCHAR(10000))
 BEGIN
     START TRANSACTION;
         INSERT INTO Attori(Nome,Descrizione,Time)

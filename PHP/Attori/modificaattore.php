@@ -6,6 +6,8 @@ require('../Functions/urlLab.php');
 
 session_start();
 
+date_default_timezone_set("Europe/Rome");
+
 $absurl=urlbasesito();
 
 if(empty($_SESSION['user'])){
@@ -77,7 +79,7 @@ echo<<<END
 			<div id="content" class="alerts">
 				<h2>Errore nella modifica:</h2>
 				<p>L'attore è stato eliminato da un altro utente.</p>
-				<p><a class="link-color-pers" href="$absurl/Attori/attori.php">Torna a Attori</a>.</p>
+				<p><a class="link-color-pers" href="$absurl/Attori/attori.php">Torna ad Attori</a>.</p>
 END;
 			}
 		}
@@ -104,7 +106,7 @@ echo<<<END
 						<fieldset>
 							<p>
 								<label for="nome">Nome*:</label>
-								<input type="text" id="nome" name="nome" maxlength="20" value="$row[1]"/>
+								<input type="text" id="nome" name="nome" maxlength="200" value="$row[1]"/>
 							</p>
 							<p>
 								<label for="desc">Descrizione*:</label>

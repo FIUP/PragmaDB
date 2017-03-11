@@ -6,6 +6,8 @@ require('../Functions/urlLab.php');
 
 session_start();
 
+date_default_timezone_set("Europe/Rome");
+
 $absurl=urlbasesito();
 
 if(empty($_SESSION['user'])){
@@ -62,7 +64,7 @@ echo<<<END
 						<fieldset>
 							<p>
 								<label for="nome">Nome*:</label>
-								<input type="text" id="nome" name="nome" maxlength="20" />
+								<input type="text" id="nome" name="nome" maxlength="200" />
 							</p>
 							<p>
 								<label for="desc">Descrizione:</label>
