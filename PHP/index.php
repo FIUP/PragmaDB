@@ -34,11 +34,11 @@ echo<<<END
 					<fieldset>
 						<p>
 							<label for="username">Username:</label>
-							<input type="text" id="username" name="username" maxlength="4" />
+							<input type="text" id="username" name="username" maxlength="8" />
 						</p>
 						<p>
 							<label for="password">Password:</label>
-							<input type="password" id="password" name="password" maxlength="8" />
+							<input type="password" id="password" name="password" maxlength="40" />
 						</p>
 						<p>
 							<input type="submit" id="submit" name="submit" value="Accedi" />
