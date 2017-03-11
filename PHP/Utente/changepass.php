@@ -21,7 +21,7 @@ else{
 		$confp=$_POST["conf"];
 		$dbinfo=get_info($user);
 		$dbpass=$dbinfo[0];
-		if(md5($oldp) == $dbpass){
+		if(sha1($oldp) == $dbpass){
 			if($newp!=$confp){
 				$title="Errore";
 				startpage_builder($title);
@@ -45,7 +45,7 @@ echo<<<END
 END;
 			}
 			else{
-				$newp=md5($newp);
+				$newp=sha1($newp);
 				$newp=mysql_escape_string($newp);
 				$conn=sql_conn();
 				$query="UPDATE Utenti u
