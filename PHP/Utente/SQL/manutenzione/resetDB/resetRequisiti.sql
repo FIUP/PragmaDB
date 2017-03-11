@@ -13,13 +13,11 @@ Dovreste aver ricevuto una copia della GNU General Public License
 in questo programma; se non l'avete ricevuta, scrivete alla Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-DELIMITER $
+DELIMITER ;
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
-BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
-END $
+SET @STATO = 'RESET_REQUISITI';
+SELECT @STATO;
+SOURCE /home/ec2-user/pragmadb/SQL/manutenzione/resetDB/clear.sql;
+SOURCE /home/ec2-user/pragmadb/SQL/manutenzione/resetDB/dropper.sql;
+SOURCE /home/ec2-user/pragmadb/SQL/DDL/set_mysql_variables.sql;
+SOURCE /home/ec2-user/pragmadb/SQL/DDL/Creation.sql;

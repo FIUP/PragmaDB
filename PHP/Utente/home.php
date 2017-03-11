@@ -18,7 +18,7 @@ else{
 echo<<<END
 
 			<div id="content">
-				<h2>Ciao $_SESSION[nome], benvenuto in PragmaDB!</h2>
+				<h2>Ciao $_SESSION[nome], benvenuto in PragmaDB - VisionsTeam Edition!</h2>
 				<div class="widget-area-left secondary" role="complementary">
 					<aside id="sections" class="widget">
 						<h4 class="widget-title">Sezioni</h4>
@@ -39,10 +39,11 @@ echo<<<END
 					<aside id="links" class="widget">
 						<h4 class="widget-title">Link Utili</h4>
 						<ul>
-							<li><a class="link-color-pers" href="https://bitbucket.org/">Bitbucket</a></li>
-							<li><a class="link-color-pers" href="">Comandi Custom LaTeX</a></li>
-							<li><a class="link-color-pers" href="https://www.hostedredmine.com">Hosted Redmine</a></li>
-							<li><a class="link-color-pers" href="https://groups.yahoo.com/neo">Yahoo! Groups</a></li>
+							<li><a class="link-color-pers" href="">Slack</a></li>
+                            <li><a class="link-color-pers" href="">GDrive SWE Progetto</a></li>
+							<li><a class="link-color-pers" href="">Repository </a></li>
+							<li><a class="link-color-pers" href=">Wiki</a></li>
+                            <li><a class="link-color-pers" href="">Comandi Custom LaTeX</a></li>
 						</ul>
 					</aside>
 				</div>

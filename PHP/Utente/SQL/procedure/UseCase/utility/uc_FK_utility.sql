@@ -15,11 +15,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
+/*cerca il primo Id e lo ritorna rimuovendolo dalla lista*/
+DROP PROCEDURE IF EXISTS parseIdList $
+CREATE PROCEDURE parseIdList( INOUT List VARCHAR(1000), IN Sep VARCHAR(1), INOUT Result VARCHAR(20) )
 BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
+    SET Result= LEFT(List,LOCATE(Sep,List)-1);/*-1 per eliminare il separator*/
+    SET List= SUBSTRING(List FROM LOCATE(Sep,List)+1);/*+1 per eliminare il separator*/
 END $

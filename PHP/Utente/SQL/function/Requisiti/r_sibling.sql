@@ -15,11 +15,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
+/*invocato solo su figli*/
+DROP FUNCTION IF EXISTS getNextSibling $
+CREATE FUNCTION getNextSibling ( IdRequisito VARCHAR(20)) RETURNS VARCHAR(20)
 BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
+    DECLARE existence INT(1);
+    IF LOCATE('.',IdRequisito) > 0
+        THEN
+            SELECT CONCAT(prefixId(IdRequisito),'.',postfixId(IdRequisito)+1) INTO IdRequisito;
+        ELSE
+            SELECT CONCAT(LEFT(IdRequisito,3),postfixId(IdRequisito)+1) INTO IdRequisito;
+    END IF;
+    SELECT COUNT(*) FROM Requisiti r WHERE r.IdRequisito = IdRequisito INTO existence;
+    IF  existence > 0
+        THEN
+            RETURN IdRequisito;
+        ELSE
+            RETURN NULL;
+    END IF;
 END $

@@ -15,11 +15,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
+DROP FUNCTION IF EXISTS buildIdTest $
+CREATE FUNCTION buildIdTest (TipoR ENUM('Validazione','Sistema','Integrazione','Unita','Regressione')) RETURNS VARCHAR(22)
 BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
+DECLARE IdReq VARCHAR(4) DEFAULT NULL;
+DECLARE lastN INT DEFAULT 0;
+DECLARE indexN INT DEFAULT 1;
+    SELECT MAX(CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)) INTO lastN FROM Test t WHERE t.Tipo=TipoR;
+    IF(lastN IS NOT NULL)
+        THEN
+            SET indexN=lastN+1;
+    END IF;
+    IF(TipoR='Integrazione')
+        THEN
+            RETURN (CONCAT('TI',indexN));
+        ELSEIF(TipoR='Unita')
+            THEN
+                RETURN (CONCAT('TU',indexN));
+        ELSE
+            RETURN (CONCAT('TR',indexN));
+    END IF;
 END $

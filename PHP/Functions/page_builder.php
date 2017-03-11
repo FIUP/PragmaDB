@@ -10,7 +10,7 @@ echo<<<END
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<link rel="stylesheet" type="text/css" media="all" href="$absurl/style.css" />
 		<link rel="icon" type="img/ico" href="$absurl/Immagini/favicon.ico" />
-		<title>$title - PragmaDB</title>
+		<title>$title - PragmaDB - Visions Team Edition</title>
 	</head>
 	<body>
 		<div id="container">
@@ -31,7 +31,7 @@ echo<<<END
 
 				<div class="site-branding header-color-pers">
 					<h1 class="site-title">PragmaDB</h1>
-					<h2 class="site-description">The Pragma Team DB System</h2>
+					<h2 class="site-description">The Visions Team DB System</h2>
 				</div>
 END;
 	if(($_SERVER['PHP_SELF']!="$absurl/index.php") && !empty($_SESSION['user'])){
@@ -510,7 +510,7 @@ echo<<<END
 
 		<footer class="site-footer footer-color-pers" role="contentinfo">
 			<div class="site-info">
-				<p>Pragma</p>
+				<p>PragmaDB - Visions Team Edition</p>
 			</div>
 		</footer>
 		<p id="backTop" class="back-top">

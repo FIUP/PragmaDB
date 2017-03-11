@@ -18,9 +18,9 @@ DELIMITER ;
 USE pragmadb;
 
 CREATE TABLE Utenti(
-    Username        VARCHAR(8) PRIMARY KEY,
-    Nome            VARCHAR(15) NOT NULL,
-    Cognome         VARCHAR(20) NOT NULL,
+    Username        VARCHAR(4) PRIMARY KEY,
+    Nome            VARCHAR(12) NOT NULL,
+    Cognome         VARCHAR(9) NOT NULL,
     Password        VARCHAR(40) NOT NULL
 ) ENGINE=InnoDB;
 
@@ -80,16 +80,15 @@ CREATE TABLE Glossario (
 
 CREATE TABLE Attori (
     CodAuto     INT(5) PRIMARY KEY AUTO_INCREMENT,
-    Nome   VARCHAR(200) UNIQUE NOT NULL,
+    Nome   VARCHAR(20) UNIQUE NOT NULL,
     Descrizione VARCHAR(10000) DEFAULT NULL,
-    Time DATETIME,
-    Secondario TINYINT(1) DEFAULT NULL
+    Time DATETIME
 ) ENGINE=InnoDB;
 
 CREATE TABLE UseCase (
     CodAuto     INT(5) PRIMARY KEY AUTO_INCREMENT,
     IdUC   VARCHAR(20) UNIQUE NOT NULL,
-    Nome  VARCHAR(300) UNIQUE NOT NULL,
+    Nome  VARCHAR(50) UNIQUE NOT NULL,
     Diagramma   VARCHAR(50) UNIQUE DEFAULT NULL,
     Descrizione VARCHAR(10000) NOT NULL,
     Precondizioni       VARCHAR(10000) NOT NULL,

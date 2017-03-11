@@ -13,13 +13,4 @@ Dovreste aver ricevuto una copia della GNU General Public License
 in questo programma; se non l'avete ricevuta, scrivete alla Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-DELIMITER $
-
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
-BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
-END $
+mysqldump -h <indirizzo_host_mysql> -P <porta_host_mysql> -u <nome_utente_db> --password=<passwod_mysql_db> <nome_mysql_db> > <nome_file_dump>.sql

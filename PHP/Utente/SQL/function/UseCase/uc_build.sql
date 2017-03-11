@@ -15,11 +15,26 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
+DROP FUNCTION IF EXISTS buildIdUC $
+CREATE FUNCTION buildIdUC (Padre INT(5) )
+    RETURNS VARCHAR(20)
 BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
+    DECLARE last VARCHAR(20);
+    IF Padre IS NULL
+        THEN
+            SET last= uc_findLastRoot();
+        ELSE
+            SET last= uc_findLastSibling(Padre);
+    END IF;
+    IF last IS NOT NULL
+        THEN
+            IF LOCATE('.',last) >0
+                THEN
+                    RETURN CONCAT(SUBSTRING(last,1,LENGTH(last)-LOCATE('.',REVERSE(last))),'.',postfixId(last)+1);
+                ELSE
+                    RETURN CONCAT(LEFT(last,2),postfixId(last)+1);
+            END IF;
+        ELSE
+            RETURN generateIdUC((SELECT IdUC FROM UseCase u WHERE u.CodAuto=Padre));
+    END IF;
 END $

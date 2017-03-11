@@ -15,11 +15,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
+DROP FUNCTION IF EXISTS existPadreUseCase $
+CREATE FUNCTION existPadreUseCase (Padre INT(5) )
+    RETURNS TINYINT(1)
 BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
+    DECLARE hasPadre TINYINT(1) DEFAULT 0;
+    SELECT COUNT(*) FROM UseCase WHERE CodAuto = Padre INTO hasPadre;
+    RETURN hasPadre;
 END $

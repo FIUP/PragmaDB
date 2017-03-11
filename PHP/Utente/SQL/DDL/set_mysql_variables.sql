@@ -15,11 +15,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
-BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
-END $
+/*recursive procedures*/
+SET @@GLOBAL.max_sp_recursion_depth = 255$
+SET @@session.max_sp_recursion_depth = 255$
+/*isolation level set to max isolation*/
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE$
+SET FOREIGN_KEY_CHECKS=1$
+DELIMITER ;

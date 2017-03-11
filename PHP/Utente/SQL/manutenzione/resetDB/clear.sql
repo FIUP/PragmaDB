@@ -15,11 +15,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
-BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
-END $
+SET @STATO = 'CLEAR'$
+SELECT @STATO$
+DELETE FROM Requisiti$
+DELETE FROM ReqTracking$
+DELETE FROM Fonti$
+DELETE FROM Utenti$
+DELETE FROM Glossario$
+DELETE FROM RequisitiUC$
+DELETE FROM AttoriUC$
+DELETE FROM UseCase$
+DELETE FROM Attori$
+
+DELIMITER ;

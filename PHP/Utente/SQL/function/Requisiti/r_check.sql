@@ -15,11 +15,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 DELIMITER $
 
-DROP PROCEDURE IF EXISTS insertUtente $
-CREATE PROCEDURE insertUtente ( IN Username VARCHAR(10), Nome VARCHAR(15), Cognome VARCHAR(20), Password VARCHAR(40) )
+DROP FUNCTION IF EXISTS existPadreRequisito $
+CREATE FUNCTION existPadreRequisito (Padre INT )
+    RETURNS TINYINT(1)
 BEGIN
-    START TRANSACTION;
-    INSERT INTO Utenti(Username, Nome, Cognome, Password)
-        VALUES (Username, Nome, Cognome, Password);
-    COMMIT;
+    DECLARE hasPadre TINYINT(1) DEFAULT 0;
+    SELECT COUNT(*) FROM Requisiti WHERE CodAuto = Padre INTO hasPadre;
+    RETURN hasPadre;/*ritorna sempre 0 oppure 1*/
+END $
+
+DROP FUNCTION IF EXISTS legalParent $
+CREATE FUNCTION legalParent (CodAuto INT(5), Padre INT(5))
+    RETURNS TINYINT(1)
+BEGIN
+    RETURN  (SELECT r.Tipo = q.Tipo FROM Requisiti r, Requisiti q WHERE r.CodAuto = CodAuto AND q.CodAuto = Padre LIMIT 1 );/*ritorna 0,1*/
 END $

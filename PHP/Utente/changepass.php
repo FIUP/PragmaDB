@@ -88,15 +88,15 @@ echo<<<END
 						<fieldset>
 							<p>
 								<label for="old">Vecchia Password*:</label>
-								<input type="password" id="old" name="old" maxlength="8" />
+								<input type="password" id="old" name="old" maxlength="40" />
 							</p>
 							<p>
 								<label for="new">Nuova Password*:</label>
-								<input type="password" id="new" name="new" maxlength="8" />
+								<input type="password" id="new" name="new" maxlength="40" />
 							</p>
 							<p>
 								<label for="new">Conferma Password*:</label>
-								<input type="password" id="conf" name="conf" maxlength="8" />
+								<input type="password" id="conf" name="conf" maxlength="40" />
 							<p>
 								<input type="submit" id="submit" name="submit" value="Cambia" />
 								<input type="reset" id="reset" name="reset" value="Cancella" />
