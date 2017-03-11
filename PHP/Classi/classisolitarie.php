@@ -5,6 +5,9 @@ require('../Functions/page_builder.php');
 require('../Functions/urlLab.php');
 
 session_start();
+
+date_default_timezone_set("Europe/Rome");
+
 $absurl=urlbasesito();
 
 if(empty($_SESSION['user'])){

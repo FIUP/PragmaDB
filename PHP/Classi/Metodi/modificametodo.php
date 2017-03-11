@@ -6,7 +6,11 @@ require('../../Functions/urlLab.php');
 
 session_start();
 
+date_default_timezone_set("Europe/Rome");
+
 $absurl=urlbasesito();
+
+date_default_timezone_set("Europe/Rome");
 
 if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
