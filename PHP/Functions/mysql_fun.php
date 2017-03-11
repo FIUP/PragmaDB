@@ -37,6 +37,7 @@ function sql_conn(){
 	//max profondità possibile alle procedure ricorsive nei sistemi che non 
 	//permettono di settare variabili globali
     $query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+    mysql_set_charset('utf8', $conn);
 	return $conn;
 }
 
