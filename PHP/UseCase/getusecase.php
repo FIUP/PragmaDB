@@ -5,6 +5,8 @@ require('../Functions/urlLab.php');
 
 session_start();
 
+date_default_timezone_set("Europe/Rome");
+
 $absurl=urlbasesito();
 
 if(empty($_SESSION['user'])){
@@ -18,7 +20,7 @@ else{
 	
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('UseCase')";
-	$query="SELECT u.CodAuto,u.IdUC,u.Nome,u.Diagramma,u.Descrizione,u.Precondizioni,u.Postcondizioni,u.ScenarioPrincipale,u.Inclusioni,u.Estensioni,u.ScenariAlternativi
+	$query="SELECT u.CodAuto,u.IdUC,u.Nome,u.Diagramma,u.Descrizione,u.Precondizioni,u.Postcondizioni,u.ScenarioPrincipale,u.Inclusioni,u.Estensioni,u.ScenariAlternativi,u.Padre
 			FROM _MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto
 			ORDER BY h.Position";
 	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
