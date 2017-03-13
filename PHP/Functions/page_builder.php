@@ -30,7 +30,7 @@ END;
 echo<<<END
 
 				<div class="site-branding header-color-pers">
-					<h1 class="site-title">PragmaDB</h1>
+					<h1 class="site-title">PragmaDB - VTE</h1>
 					<h2 class="site-description">The Visions Team DB System</h2>
 				</div>
 END;

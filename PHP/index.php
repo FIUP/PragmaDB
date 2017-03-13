@@ -34,7 +34,7 @@ echo<<<END
 					<fieldset>
 						<p>
 							<label for="username">Username:</label>
-							<input type="text" id="username" name="username" maxlength="8" />
+							<input type="text" id="username" name="username" maxlength="10" />
 						</p>
 						<p>
 							<label for="password">Password:</label>

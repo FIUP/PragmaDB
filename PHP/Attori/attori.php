@@ -15,7 +15,7 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$conn=sql_conn();
-	$query="SELECT a.CodAuto, a.Nome, a.Descrizione, a.Time
+	$query="SELECT a.CodAuto, a.Nome, a.Descrizione, a.Time, a.Secondario
 			FROM Attori a
 			ORDER BY a.Nome";
 	$att=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
