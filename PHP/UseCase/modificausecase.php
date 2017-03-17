@@ -322,7 +322,7 @@ echo<<<END
 								<textarea rows="2" cols="0" id="inclusioni" name="inclusioni" maxlength="10000">$ucdb[9]</textarea>
 							</p>
 							<p>
-								<label for="estensioni">Use case estesi:</label>
+								<label for="estensioni">Estensioni:</label>
 								<textarea rows="2" cols="0" id="estensioni" name="estensioni" maxlength="10000">$ucdb[10]</textarea>
 							</p>
 							<p>
@@ -363,7 +363,7 @@ END;
 					$attori_rimanenti["$tnom"]=$tcod;
 				}
 			}
-			foreach($attori as $nom => $cod){
+			foreach($attori as $nom => $cod){	
 				$i++;
 echo<<<END
 
