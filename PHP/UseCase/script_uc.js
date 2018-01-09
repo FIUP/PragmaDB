@@ -1,34 +1,34 @@
 function multiple_sel(cod,ind){
 	var str="attore";
-	if(cod==2){
+	if(cod===2){
 		str="requi";
 	}
-	if(cod==3){
+	if(cod===3){
 		str="uc";
 	}
-	if(cod==4){
+	if(cod===4){
 		str="pkg"; //relazioni tra i componenti, usato per Package
 	}
-	if(cod==5){
+	if(cod===5){
 		str="clu";
 	}
-	if(cod==6){
+	if(cod===6){
 		str="cld";
 	}
-	if(cod==7){
+	if(cod===7){
 		str="clt";
 	}
-	if(cod==8){
+	if(cod===8){
 		str="clq";
 	}
-	if(cod==9){
+	if(cod===9){
 		str="met";
 	}
-    if(cod==10)
-+	{
-+		str="attore-sec";
-+	}
-	var cont=0;
+    if(cod===10)
+	{
+		str="attore-sec";
+	}
+	var cont;
 	var index=1;
 	var sel=document.getElementById(str+ind);
 	var sel_text=sel.options[sel.selectedIndex].text;
@@ -38,15 +38,15 @@ function multiple_sel(cod,ind){
 	}
 	cont=index-1;
 	/*rimuove l'appena selezionato*/
-	if(sel_text!="N/D"){
+	if(sel_text!=="N/D"){
 		for(var i=1;i<=cont;i++){
-			if(i!=ind){
+			if(i!==ind){
 				var att=document.getElementById(str+i);
 				var found=false;
 				var del=att.options[0];
 				for(var j=0;!found;j++){
 					del=att.options[j];
-					if(del.text==sel_text){
+					if(del.text===sel_text){
 						found=true;
 					}
 				}
@@ -54,14 +54,14 @@ function multiple_sel(cod,ind){
 			}
 		}
 	}
-	if(sel.id==(str+cont)){
+	if(sel.id===(str+cont)){
 		/*aggiunge la nuova select*/
 		var se=document.createElement("select");
 		se.setAttribute("id",str+index);
 		se.setAttribute("onchange","multiple_sel("+cod+","+index+")");
 		se.setAttribute("name",str+index);
 		for(var i=0;sel.options[i];i++){
-			if(i!=sel.selectedIndex){
+			if(i!==sel.selectedIndex){
 				var op=document.createElement("option");
 				op.text=sel.options[i].text;
 				op.value=sel.options[i].value;
@@ -78,14 +78,14 @@ function multiple_sel(cod,ind){
 		var old_value="";
 		var first=false;
 		var prec_index=ind-1;
-		if(ind==1){
+		if(ind===1){
 			prec_index=ind+1;
 		}
 		var prec=document.getElementById(str+prec_index);
-		for(var i=0;(old_selection=="") && (sel.options[i]);i++){
+		for(var i=0;(old_selection==="") && (sel.options[i]);i++){
 			var found=false;
 			for(var j=0;(!found)&&(prec.options[j]);j++){
-				if(prec.options[j].text==sel.options[i].text){
+				if(prec.options[j].text===sel.options[i].text){
 					found=true;
 				}
 			}
@@ -95,9 +95,9 @@ function multiple_sel(cod,ind){
 			}
 		}
 		/******ripristina il vecchio*****/
-		if(old_selection!=""){
+		if(old_selection!==""){
 			for(var i=1;i<=cont;i++){
-				if(i!=ind){
+				if(i!==ind){
 					var att=document.getElementById(str+i);
 					var opt=document.createElement("option");
 					opt.text=old_selection;
@@ -106,7 +106,7 @@ function multiple_sel(cod,ind){
 				}
 			}
 		}
-		if(sel_text=="N/D"){
+		if(sel_text==="N/D"){
 			par.removeChild(sel);
 			var att=document.getElementById("num_"+str);
 			var num=cont-2;
