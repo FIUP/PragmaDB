@@ -15,13 +15,13 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$id=$_GET['id'];
-	$id=mysql_escape_string($id);
-	$conn=sql_conn();
+    $conn=sql_conn();
+	$id=mysqli_escape_string($conn, $id);
 	$query="SELECT r1.CodAuto,r1.IdRequisito,r1.Descrizione,r1.Tipo,r1.Importanza,r1.Padre,r1.Stato,r1.Soddisfatto,r1.Implementato,r1.Fonte, r2.IdRequisito, r2.Descrizione, f.IdFonte, f.Nome
 			FROM (Requisiti r1 LEFT JOIN Requisiti r2 ON (r1.Padre=r2.CodAuto)) JOIN Fonti f ON r1.Fonte=f.CodAuto
 			WHERE r1.CodAuto='$id'";
-	$req=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row=mysql_fetch_row($req);
+	$req=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row=mysqli_fetch_row($req);
 	if($row[0]==$id){
 		$title="Dettaglio Requisito - $row[1]";
 		startpage_builder($title);
@@ -121,9 +121,9 @@ END;
 				FROM _MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto
 				WHERE r.Padre='$id'
 				ORDER BY h.Position";
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$sons=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$riga = mysql_fetch_row($sons);
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+		$sons=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$riga = mysqli_fetch_row($sons);
 		if($riga[0]!=null){
 echo<<<END
 
@@ -131,7 +131,7 @@ echo<<<END
 					<dd><a class="link-color-pers" href="$absurl/Requisiti/dettagliorequisito.php?id=$riga[0]">$riga[1] - $riga[2]</a></dd>
 END;
 		}
-		while($riga = mysql_fetch_row($sons)){
+		while($riga = mysqli_fetch_row($sons)){
 echo<<<END
 
 					<dd><a class="link-color-pers" href="$absurl/Requisiti/dettagliorequisito.php?id=$riga[0]">$riga[1] - $riga[2]</a></dd>
@@ -142,9 +142,9 @@ END;
 				FROM RequisitiUC ruc JOIN (_MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto) ON ruc.UC=u.CodAuto
 				WHERE ruc.CodReq='$id'
 				ORDER BY h.Position";
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$riga = mysql_fetch_row($uc);
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+		$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$riga = mysqli_fetch_row($uc);
 		if($riga[0]!=null){
 echo<<<END
 
@@ -152,7 +152,7 @@ echo<<<END
 					<dd><a class="link-color-pers" href="$absurl/UseCase/dettagliousecase.php?id=$riga[0]">$riga[1] - $riga[2]</a></dd>
 END;
 		}
-		while($riga = mysql_fetch_row($uc)){
+		while($riga = mysqli_fetch_row($uc)){
 echo<<<END
 
 					<dd><a class="link-color-pers" href="$absurl/UseCase/dettagliousecase.php?id=$riga[0]">$riga[1] - $riga[2]</a></dd>

@@ -24,8 +24,8 @@ else{
 		$timestamp_query="SELECT t.Time
 						  FROM Test t
 						  WHERE t.CodAuto='$id'"; //Query che recupera il timestamp dell'utlima modifica al db di $id
-		$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		if($row=mysql_fetch_row($timestamp_query)){
+		$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+		if($row=mysqli_fetch_row($timestamp_query)){
 			$timestamp_db=$row[0];
 			$timestamp_db=strtotime($timestamp_db);
 			if($timestampf<$timestamp_db){
@@ -42,7 +42,7 @@ END;
 			}
 			else{
 				$query="CALL removeTest('$id')"; //Chiama la SP per la rimozione
-				$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+				$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 				$title="Test Eliminato";
 				startpage_builder($title);
 echo<<<END
@@ -72,13 +72,13 @@ END;
 	else{
 		//L'utente non ha ancora scelto se eliminare o meno, gli stampo quello che sta cercando di eliminare e un form per scegliere
 		$id=$_GET['id'];
-		$id=mysql_escape_string($id);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$id=mysqli_escape_string($conn, $id);
 		$queryTipo="SELECT t.Tipo
 					FROM Test t
 					WHERE t.CodAuto='$id'";
-		$tipo=mysql_query($queryTipo,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$tipo=mysql_fetch_row($tipo);
+		$tipo=mysqli_query($conn, $queryTipo) or fail("Query fallita: ".mysqli_error($conn));
+		$tipo=mysqli_fetch_row($tipo);
 		$tipo=$tipo[0];
 		if($tipo=="Validazione"){
 			$query="SELECT t.CodAuto, CONCAT('TV',SUBSTRING(r.IdRequisito,2)), t.Descrizione, t.Implementato, t.Eseguito, t.Esito, t.Tipo, r.IdRequisito, r.CodAuto
@@ -100,9 +100,9 @@ END;
 					FROM Test t
 					WHERE t.CodAuto='$id'";
 		}
-		$test=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$test=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$row=mysql_fetch_row($test);
+		$row=mysqli_fetch_row($test);
 		if($row[0]==$id){
 			$title="Elimina Test - $row[1]";
 			startpage_builder($title);

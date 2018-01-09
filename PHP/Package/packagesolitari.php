@@ -20,8 +20,8 @@ else{
 			FROM Package p1 LEFT JOIN Package p2 ON p1.Padre=p2.CodAuto
 			WHERE p1.CodAuto NOT IN (SELECT rp.CodPkg FROM RequisitiPackage rp)
 			ORDER BY p1.PrefixNome";
-	//$upd=mysql_query($query_update,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$pack=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$upd=mysqli_query($conn, $query_update) or fail("Query fallita: ".mysqli_error($conn));
+	$pack=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 	$title="Package Solitari";
 	startpage_builder($title);
 echo<<<END
@@ -41,7 +41,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-	while($row=mysql_fetch_row($pack)){
+	while($row=mysqli_fetch_row($pack)){
 echo<<<END
 
 						<tr>

@@ -14,14 +14,14 @@ if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
 }
 else{
+    $conn=sql_conn();
 	$id=$_GET['id'];
-	$id=mysql_escape_string($id);
-	$conn=sql_conn();
+	$id=mysqli_escape_string($conn, $id);
 	$query="SELECT p.CodAuto, p.Nome, p.Tipo, p.Descrizione, m.Nome, p.Metodo, c.PrefixNome, c.CodAuto
 			FROM (Parametro p JOIN Metodo m ON p.Metodo=m.CodAuto) JOIN Classe c ON m.Classe=c.CodAuto
 			WHERE p.CodAuto='$id'"; //query che carica il parametro di id = $id
-	$par=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row=mysql_fetch_row($par);
+	$par=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row=mysqli_fetch_row($par);
 	if($row[0]==$id){
 		$title="Dettaglio Parametro - $row[1]";
 		startpage_builder($title);

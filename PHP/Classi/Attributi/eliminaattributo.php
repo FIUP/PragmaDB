@@ -26,8 +26,8 @@ else{
 		$timestamp_query="SELECT c.Time
 							FROM Classe c
 							WHERE c.CodAuto='$cl'"; //Query che recupera il timestamp dell'utlima modifica al db di $id
-		$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		if($row=mysql_fetch_row($timestamp_query)){
+		$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+		if($row=mysqli_fetch_row($timestamp_query)){
 			$timestamp_db=$row[0];
 			$timestamp_db=strtotime($timestamp_db);
 			if($timestampf<$timestamp_db){
@@ -44,7 +44,7 @@ END;
 			}
 			else{
 				$query="CALL removeAttributo('$id','$cl')"; //Chiama la SP per la rimozione
-				$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+				$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 				$title="Attributo Eliminato";
 				startpage_builder($title);
 echo<<<END
@@ -74,14 +74,14 @@ END;
 	else{
 		//L'utente non ha ancora scelto se eliminare o meno, gli stampo quello che sta cercando di eliminare e un form per scegliere
 		$id=$_GET['id'];
-		$id=mysql_escape_string($id);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$id=mysqli_escape_string($conn, $id);
 		$query="SELECT a.CodAuto, a.AccessMod, a.Nome, a.Tipo, a.Descrizione, c.PrefixNome, a.Classe
 				FROM Attributo a JOIN Classe c ON a.Classe=c.CodAuto
 				WHERE a.CodAuto='$id'"; //Query per recuperare l'Attributo
-		$attr=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$attr=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$row=mysql_fetch_row($attr);
+		$row=mysqli_fetch_row($attr);
 		if($row[0]==$id){
 			$title="$row[5] - Elimina $row[2]";
 			startpage_builder($title);

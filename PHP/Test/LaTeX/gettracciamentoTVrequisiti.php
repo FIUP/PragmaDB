@@ -24,8 +24,8 @@ else{
 			   FROM Test t JOIN (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) ON t.Requisito=r.CodAuto
 			   WHERE t.Tipo='Validazione'
 			   ORDER BY h.Position";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$tv=mysql_query($query_tv,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	$tv=mysqli_query($conn, $query_tv) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Test di Validazione-Requisiti}
 \\normalsize
@@ -40,7 +40,7 @@ echo<<<END
 %\hline
 \\endhead
 END;
-	while($row_tv=mysql_fetch_row($tv)){
+	while($row_tv=mysqli_fetch_row($tv)){
 echo<<<END
 
 \\hyperlink{{$row_tv[0]}}{{$row_tv[0]}} & $row_tv[1]\\\ %\hline

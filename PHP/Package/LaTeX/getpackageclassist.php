@@ -23,8 +23,8 @@ else{
 	$query="SELECT p1.CodAuto, p1.PrefixNome, p1.UML, p1.Descrizione, p1.Padre, p2.PrefixNome, p2.Nome
 			FROM Package p1 LEFT JOIN Package p2 ON p1.Padre=p2.CodAuto
 			ORDER BY p1.PrefixNome";
-	$pack=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	while($row=mysql_fetch_row($pack)){
+	$pack=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	while($row=mysqli_fetch_row($pack)){
 echo<<<END
 \\section{Componenti e Classi}
 \\subsection{{$row[1]}}
@@ -62,8 +62,8 @@ END;
 					   FROM RelatedPackage rp JOIN Package p ON rp.Pack1=p.CodAuto
 					   WHERE rp.Pack2='$row[0]'
 					   ORDER BY PrefixNome";
-		$related=mysql_query($queryRelated,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$riga=mysql_fetch_row($related);
+		$related=mysqli_query($conn, $queryRelated) or fail("Query fallita: ".mysqli_error($conn));
+		$riga=mysqli_fetch_row($related);
 		if($riga[0]!=null){
 echo<<<END
 
@@ -72,7 +72,7 @@ echo<<<END
 \\item \\hyperref[{$riga[0]}]{\\texttt{{$riga[1]}}}\\\
 $riga[2]
 END;
-			while($riga=mysql_fetch_row($related)){
+			while($riga=mysqli_fetch_row($related)){
 echo<<<END
 
 \\item \\hyperref[{$riga[0]}]{\\texttt{{$riga[1]}}}\\\
@@ -88,8 +88,8 @@ END;
 					   FROM Package p
 					   WHERE p.Padre='$row[0]'
 					   ORDER BY p.PrefixNome";
-		$subpack=mysql_query($querySubPack,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$riga=mysql_fetch_row($subpack);
+		$subpack=mysqli_query($conn, $querySubPack) or fail("Query fallita: ".mysqli_error($conn));
+		$riga=mysqli_fetch_row($subpack);
 		if($riga[0]!=null){
 echo<<<END
 
@@ -98,7 +98,7 @@ echo<<<END
 \\item \\hyperref[{$riga[0]}]{\\texttt{{$riga[1]}}}\\\
 $riga[2]
 END;
-			while($riga=mysql_fetch_row($subpack)){
+			while($riga=mysqli_fetch_row($subpack)){
 echo<<<END
 
 \\item \\hyperref[{$riga[0]}]{\\texttt{{$riga[1]}}}\\\
@@ -118,8 +118,8 @@ END;
 					  FROM Classe c
 					  WHERE c.ContenutaIn='$row[0]'
 					  ORDER BY c.PrefixNome";
-		$classi=mysql_query($queryClassi,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$riga=mysql_fetch_row($classi);
+		$classi=mysqli_query($conn, $queryClassi) or fail("Query fallita: ".mysqli_error($conn));
+		$riga=mysqli_fetch_row($classi);
 		if($riga[0]!=null){
 echo<<<END
 
@@ -134,7 +134,7 @@ echo<<<END
 
 END;
 		}
-		while($riga=mysql_fetch_row($classi)){
+		while($riga=mysqli_fetch_row($classi)){
 			packageClassiCommonTex($conn, $riga, false);
 		}
 	}

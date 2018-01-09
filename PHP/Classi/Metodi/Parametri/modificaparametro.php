@@ -30,37 +30,37 @@ else{
 		$err_tipo=false;
 		$err_desc=false;
 		$err_pres=false;
-		$errori=0;
+		$errors=0;
 		if(($nomef==$old_nomef) && ($tipof==$old_tipof) && ($descf==$old_descf)){
 			$err_no_modifica=true;
-			$errori++;
+			$errors++;
 		}
 		if($nomef==null){
 			$err_nome=true;
-			$errori++;
+			$errors++;
 		}
 		if($tipof==null){
 			$err_tipo=true;
-			$errori++;
+			$errors++;
 		}
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
-		$nomef=mysql_escape_string($nomef);
-		$tipof=mysql_escape_string($tipof);
-		$descf=mysql_escape_string($descf);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$nomef=mysqli_escape_string($conn, $nomef);
+		$tipof=mysqli_escape_string($conn,$tipof);
+		$descf=mysqli_escape_string($conn, $descf);
 		$query="SELECT p.CodAuto
 				FROM Parametro p
 				WHERE p.Nome='$nomef' AND p.Metodo='$me' AND p.CodAuto<>'$id'";
-		$pres=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$pres=mysql_fetch_row($pres);
+		$pres=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$pres=mysqli_fetch_row($pres);
 		if($pres[0]!=null){
 			$err_pres=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -109,8 +109,8 @@ END;
 			$timestamp_query="SELECT c.Time
 							  FROM Classe c
 							  WHERE c.CodAuto='$cl'";
-			$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-			if($row=mysql_fetch_row($timestamp_query)){
+			$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+			if($row=mysqli_fetch_row($timestamp_query)){
 				$timestamp_db=$row[0];
 				$timestamp_db=strtotime($timestamp_db);
 				if($timestampf<$timestamp_db){
@@ -144,7 +144,7 @@ END;
 						$query=$query."'$descf',";
 					}
 					$query=$query."'$me','$cl')";
-					$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+					$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 					$title="Parametro Modificato";
 					startpage_builder($title);
 echo<<<END
@@ -171,14 +171,14 @@ END;
 	}
 	else{
 		$id=$_GET['id'];
-		$id=mysql_escape_string($id);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$id=mysqli_escape_string($conn, $id);
 		$query="SELECT p.CodAuto, p.Nome, p.Tipo, p.Descrizione, m.Nome, p.Metodo, c.PrefixNome, c.CodAuto
 				FROM (Parametro p JOIN Metodo m ON p.Metodo=m.CodAuto) JOIN Classe c ON m.Classe=c.CodAuto
 				WHERE p.CodAuto='$id'";
-		$par=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$par=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$pardb=mysql_fetch_row($par);
+		$pardb=mysqli_fetch_row($par);
 		if($pardb[0]==$id){
 			$title="$pardb[6] - $pardb[4] - Modifica $pardb[1]";
 			startpage_builder($title);

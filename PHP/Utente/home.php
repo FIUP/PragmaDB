@@ -42,7 +42,7 @@ echo<<<END
 							<li><a class="link-color-pers" href="">Slack</a></li>
                             <li><a class="link-color-pers" href="">GDrive SWE Progetto</a></li>
 							<li><a class="link-color-pers" href="">Repository </a></li>
-							<li><a class="link-color-pers" href=">Wiki</a></li>
+							<li><a class="link-color-pers" href="">Wiki</a></li>
                             <li><a class="link-color-pers" href="">Comandi Custom LaTeX</a></li>
 						</ul>
 					</aside>

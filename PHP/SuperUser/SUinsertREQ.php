@@ -9,11 +9,11 @@ function sql_conn_testDB(){
 	$user="INSERIRE_NOME_UTENTE_DB";
 	$pwd="INSERIRE_PASSWD_DB";
 	$dbname="INSERIRE_NOME_DB";
-	$conn=mysql_connect($host,$user,$pwd)
+	$conn=mysqli_connect($host,$user,$pwd)
 			or die($_SERVER['PHP_SELF'] . ": Connessione Fallita!<br />");
-	mysql_select_db($dbname);
+	mysqli_select_db($conn,$dbname);
 	$query="SET @@session.max_sp_recursion_depth = 255";
-    $query=mysql_query($query,$conn) or die($_SERVER['PHP_SELF'] ."Query fallita: ".mysql_error($conn));
+    $query=mysqli_query($conn,$query) or die($_SERVER['PHP_SELF'] ."Query fallita: ".mysqli_error($conn));
 	return $conn;
 }
 
@@ -23,7 +23,7 @@ echo<<<END
 <html lang="it">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Risultato SuperUser - PragmaDB</title>
+		<title>Risultato SuperUser - PragmaDB VTE</title>
 	</head>
 	<body>
 END;
@@ -47,17 +47,17 @@ END;
 				$record= substr($record,strlen($token."**"));//Un utente può creare un nuovo progetto**
 				$reqRecord[0]= "smun";
 				$recordIndex= 1;
-
+                $conn= sql_conn();
 				while($record !==false)
 				{
 					$token= trim(preg_replace('/\s+/', ' ', $token));
-					$escape= mysql_escape_string($token);
+					$escape= mysqli_escape_string($conn,$token);
 					$reqRecord[$recordIndex]= $escape;
 					$token= strtok($record,$splitValue);
 					$record= substr($record,strlen($token."**"));//Funzionale**
 					$recordIndex= $recordIndex+1;
 				}
-				$escape= mysql_escape_string($token);
+				$escape= mysqli_escape_string($conn,$token);
 				$reqRecord[$recordIndex]= $escape;
 			}
 			if(count($reqRecord) == 9)
@@ -89,8 +89,8 @@ END;
 				{
 					$padre= $reqPage[$pageIndex][4];
 					$query= "SELECT r.CodAuto FROM Requisiti r WHERE r.IdRequisito= '$padre'";
-					$ris= mysql_query($query,$conn) or die("Query fallita: ".mysql_error($conn));
-					$row=mysql_fetch_row($ris);
+					$ris= mysqli_query($conn,$query) or die("Query fallita: ".mysqli_error($conn));
+					$row=mysqli_fetch_row($ris);
 					$reqPage[$pageIndex][4]= $row[0];
 				}
 				$reqPage[$pageIndex][7]= substr($reqPage[$pageIndex][7],1);
@@ -109,7 +109,7 @@ END;
 				else
 					$query= "CALL insertRequisito('$var0','$var1','$var2','$var3','$var4',$var5,$var6,$var7,'')";
 				echo $query;
-				mysql_query($query,$conn) or die("Query fallita: ".mysql_error($conn));
+				mysqli_query($conn,$query) or die("Query fallita: ".mysqli_error($conn));
 			}
 		}
 	}

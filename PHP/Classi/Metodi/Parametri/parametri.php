@@ -14,20 +14,20 @@ if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
 }
 else{
+    $conn=sql_conn();
 	$me=$_GET['me'];
-	$me=mysql_escape_string($me);
-	$conn=sql_conn();
+	$me=mysqli_escape_string($conn,$me);
 	$query="SELECT m.CodAuto, m.Nome, m.Classe, c.PrefixNome
 			FROM Metodo m JOIN Classe c ON m.Classe=c.CodAuto
 			WHERE m.CodAuto='$me'";
-	$metodo=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row_met=mysql_fetch_row($metodo);
+	$metodo=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row_met=mysqli_fetch_row($metodo);
 	if($row_met[0]==$me){
 		$query="SELECT p.CodAuto, p.Nome, p.Tipo, p.Descrizione
 				FROM Parametro p
 				WHERE p.Metodo='$me'
 				ORDER BY p.CodAuto";
-		$par=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$par=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$title="$row_met[3] - $row_met[1] - Parametri";
 		startpage_builder($title);
 echo<<<END
@@ -62,7 +62,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-		while($row=mysql_fetch_row($par)){
+		while($row=mysqli_fetch_row($par)){
 echo<<<END
 
 						<tr>

@@ -18,7 +18,7 @@ else{
 	$query="SELECT a.CodAuto, a.Nome, a.Descrizione, a.Time, a.Secondario
 			FROM Attori a
 			ORDER BY a.Nome";
-	$att=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$att=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 	$title="Attori";
 	startpage_builder($title);
 echo<<<END
@@ -43,7 +43,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-	while($row=mysql_fetch_row($att)){
+	while($row=mysqli_fetch_row($att)){
 echo<<<END
 
 						<tr>

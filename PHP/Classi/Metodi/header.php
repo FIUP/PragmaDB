@@ -15,13 +15,13 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$id=$_GET['id'];
-	$id=mysql_escape_string($id);
-	$conn=sql_conn();
+    $conn=sql_conn();
+	$id=mysqli_escape_string($conn, $id);
 	$query="SELECT m.CodAuto, m.AccessMod, m.Nome, m.ReturnType, m.Descrizione, c.PrefixNome, m.Classe
 			FROM Metodo m JOIN Classe c ON m.Classe=c.CodAuto
 			WHERE m.CodAuto='$id'"; //query che carica il metodo di id = $id
-	$met=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row=mysql_fetch_row($met);
+	$met=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row=mysqli_fetch_row($met);
 	if($row[0]==$id){
 		$title="Header Metodo - $row[2]";
 		startpage_builder($title);
@@ -79,8 +79,8 @@ END;
 				FROM Parametro p
 				WHERE p.Metodo='$id'
 				ORDER BY p.CodAuto"; //Query che carica i parametri del metodo
-		$par=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		while($riga = mysql_fetch_row($par)){
+		$par=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		while($riga = mysqli_fetch_row($par)){
 			if((substr_count($riga[2], "\\")>0)||(substr_count($riga[1], "\\")>0)||(substr_count($riga[3], "\\")>0)){
 echo<<<END
 

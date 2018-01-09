@@ -35,32 +35,32 @@ else{
 		$err_post=false;
 		$err_princ=false;
 		$err_attore=false;
-		$errori=0;
+		$errors=0;
 		if($nomef==null){
 			$err_nome=true;
-			$errori++;
+			$errors++;
 		}
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
 		if($pref==null){
 			$err_pre=true;
-			$errori++;
+			$errors++;
 		}
 		if($postf==null){
 			$err_post=true;
-			$errori++;
+			$errors++;
 		}
 		if($princf==null){
 			$err_princ=true;
-			$errori++;
+			$errors++;
 		}
 		if($num_attoref<1){
 			$err_attore=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -121,16 +121,16 @@ END;
 				$temp=$_POST["requi$i"];
 				$requif="$requif"."$temp".",";
 			}
-			$nomef=mysql_escape_string($nomef);
-			$diagf=mysql_escape_string($diagf);
-			$descf=mysql_escape_string($descf);
-			$pref=mysql_escape_string($pref);
-			$postf=mysql_escape_string($postf);
-			$princf=mysql_escape_string($princf);
-			$inclusionif=mysql_escape_string($inclusionif);
-			$estensionif=mysql_escape_string($estensionif);
-			$altef=mysql_escape_string($altef);
-			$conn=sql_conn();
+            $conn=sql_conn();
+			$nomef=mysqli_escape_string($conn, $nomef);
+			$diagf=mysqli_escape_string($conn, $diagf);
+			$descf=mysqli_escape_string($conn, $descf);
+			$pref=mysqli_escape_string($conn, $pref);
+			$postf=mysqli_escape_string($conn, $postf);
+			$princf=mysqli_escape_string($conn, $princf);
+			$inclusionif=mysqli_escape_string($conn, $inclusionif);
+			$estensionif=mysqli_escape_string($conn, $estensionif);
+			$altef=mysqli_escape_string($conn, $altef);
 			$query="CALL insertUseCase('$nomef',";
 			if($diagf==null){
 				$query=$query."null,";
@@ -165,7 +165,7 @@ END;
 				$query=$query."'$altef',";
 			}
 			$query=$query."'$requif','$attorif','$_SESSION[user]')";
-			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+			$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 			$title="Use Case Inserito";
 			startpage_builder($title);
 echo<<<END
@@ -219,9 +219,9 @@ END;
 		$query="SELECT u.CodAuto, u.IdUC
 				FROM _MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto
 				ORDER BY h.Position";
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		while($row=mysql_fetch_row($uc)){
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+		$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		while($row=mysqli_fetch_row($uc)){
 echo<<<END
 
 									<option value="$row[0]">$row[1]</option>
@@ -257,8 +257,8 @@ END;
 		$query="SELECT a.CodAuto, a.Nome
 				FROM Attori a
 				ORDER BY a.Nome";
-		$attori=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		while($row=mysql_fetch_row($attori)){
+		$attori=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		while($row=mysqli_fetch_row($attori)){
 			if($row[0]!=null){
 echo<<<END
 
@@ -280,9 +280,9 @@ END;
 		$query="SELECT r.CodAuto, r.IdRequisito
 				FROM _MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto
 				ORDER BY h.Position";
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$requi=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		while($row=mysql_fetch_row($requi)){
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+		$requi=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		while($row=mysqli_fetch_row($requi)){
 			if($row[0]!=null){
 echo<<<END
 

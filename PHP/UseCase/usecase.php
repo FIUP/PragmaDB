@@ -19,8 +19,8 @@ else{
 	$query="SELECT u1.CodAuto, u1.IdUC, u1.Nome, u1.Diagramma, u1.Descrizione, u1.Precondizioni, u1.Postcondizioni, u1.Padre, u1.ScenarioPrincipale, u1.Inclusioni, u1.Estensioni, u1.ScenariAlternativi, u1.Time, u2.IdUC
 			FROM (_MapUseCase h JOIN UseCase u1 ON h.CodAuto=u1.CodAuto) LEFT JOIN UseCase u2 ON u1.Padre=u2.CodAuto
 			ORDER BY h.Position";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 	$title="Use Case";
 	startpage_builder($title);
 echo<<<END
@@ -65,7 +65,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-	while($row=mysql_fetch_row($uc)){
+	while($row=mysqli_fetch_row($uc)){
 echo<<<END
 
 						<tr>

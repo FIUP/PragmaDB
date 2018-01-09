@@ -15,13 +15,13 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$id=$_GET['id'];
-	$id=mysql_escape_string($id);
-	$conn=sql_conn();
+    $conn=sql_conn();
+	$id=mysqli_escape_string($conn, $id);
 	$query="SELECT a.CodAuto, a.AccessMod, a.Nome, a.Tipo, a.Descrizione, c.PrefixNome, a.Classe
 			FROM Attributo a JOIN Classe c ON a.Classe=c.CodAuto
 			WHERE a.CodAuto='$id'"; //query che carica l'attributo di id = $id
-	$attr=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row=mysql_fetch_row($attr);
+	$attr=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row=mysqli_fetch_row($attr);
 	if($row[0]==$id){
 		$title="Dettaglio Attributo - $row[2]";
 		startpage_builder($title);

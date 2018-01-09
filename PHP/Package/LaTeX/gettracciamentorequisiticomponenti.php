@@ -25,9 +25,9 @@ else{
 	$query_requi="SELECT DISTINCT r.CodAuto, r.IdRequisito
 				FROM (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) JOIN RequisitiPackage rp ON r.CodAuto=rp.CodReq
 				ORDER BY h.Position";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	//$upd=mysql_query($query_update,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$requi=mysql_query($query_requi,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	//$upd=mysqli_query($conn, $query_update) or fail("Query fallita: ".mysqli_error($conn));
+	$requi=mysqli_query($conn, $query_requi) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Requisiti-Componenti}
 \\normalsize
@@ -42,7 +42,7 @@ echo<<<END
 %\hline
 \\endhead
 END;
-	while($row_requi=mysql_fetch_row($requi)){
+	while($row_requi=mysqli_fetch_row($requi)){
 		requisitiComponentiTex($conn, $row_requi);
 	}
 echo<<<END

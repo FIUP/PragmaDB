@@ -24,8 +24,8 @@ else{
 	$query_requi="SELECT DISTINCT r.CodAuto, r.IdRequisito
 				FROM (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) JOIN RequisitiClasse rc ON r.CodAuto=rc.CodReq
 				ORDER BY h.Position";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$requi=mysql_query($query_requi,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	$requi=mysqli_query($conn, $query_requi) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Requisiti-Classi}
 \\normalsize
@@ -40,7 +40,7 @@ echo<<<END
 %\hline
 \\endhead
 END;
-	while($row_requi=mysql_fetch_row($requi)){
+	while($row_requi=mysqli_fetch_row($requi)){
 		requisitiClassiTex($conn, $row_requi);
 	}
 echo<<<END

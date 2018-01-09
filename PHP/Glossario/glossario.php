@@ -19,7 +19,7 @@ else{
 			FROM Glossario g
 			WHERE (CONVERT(RIGHT(g.IdTermine,LENGTH(g.IdTermine)-1),UNSIGNED INT) = 1)
 			ORDER BY LEFT(g.IdTermine,1),CONVERT(SUBSTRING(g.IdTermine,2),UNSIGNED INT)";
-	$menu=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$menu=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 	$title="Glossario";
 	startpage_builder($title);
 echo<<<END
@@ -46,14 +46,14 @@ echo<<<END
 					<ul>
 END;
 	$alphas=range('A', 'Z');
-	$letter=mysql_fetch_row($menu);
+	$letter=mysqli_fetch_row($menu);
 	foreach($alphas AS $alpha){
 		if(lcfirst($alpha)==$letter[0]){
 echo<<<END
 
 						<li><a class="link-color-pers" href="#$alpha">$alpha</a></li>
 END;
-			$letter=mysql_fetch_row($menu);
+			$letter=mysqli_fetch_row($menu);
 		}
 		else{
 echo<<<END
@@ -70,8 +70,8 @@ END;
 	$query="SELECT g.CodAuto, g.IdTermine, g.Identificativo, g.Name, g.Description, g.First, g.FirstPlural, g.Text, g.Plural, g.Time, CONVERT(RIGHT(g.IdTermine,LENGTH(g.IdTermine)-1),UNSIGNED INT)
 			FROM Glossario g
 			ORDER BY LEFT(g.IdTermine,1),CONVERT(SUBSTRING(g.IdTermine,2),UNSIGNED INT)";
-	$glo=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	if($row=mysql_fetch_row($glo)){
+	$glo=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	if($row=mysqli_fetch_row($glo)){
 		if($row[10]==1){
 			$id=$row[1];
 			$startletter=ucfirst($id[0]);
@@ -122,7 +122,7 @@ echo<<<END
 							</td>
 						</tr>
 END;
-		while($row=mysql_fetch_row($glo)){
+		while($row=mysqli_fetch_row($glo)){
 			if($row[10]==1){
 				$id=$row[1];
 				$startletter=ucfirst($id[0]);

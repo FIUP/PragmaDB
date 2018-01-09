@@ -21,16 +21,16 @@ else{
 		$timestampf=$_POST["timestamp"];
 		$err_nome=false;
 		$err_desc=false;
-		$errori=0;
+		$errors=0;
 		if($nomef==null){
 			$err_nome=true;
-			$errori++;
+			$errors++;
 		}
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -38,7 +38,7 @@ echo<<<END
 			<div id="content" class="alerts">
 				<h2>Errore nella modifica della fonte</h2>
 END;
-			if($errori>1){
+			if($errors>1){
 echo<<<END
 
 				<p>Non sono stati inseriti correttamente i campi 'Nome' e 'Descrizione'. <a class="link-color-pers" href="$absurl/Fonti/modificafonte.php?id=$id">Riprova</a>.</p>
@@ -60,14 +60,14 @@ END;
 			}
 		}
 		else{
-			$nomef=mysql_escape_string($nomef);
-			$descf=mysql_escape_string($descf);
-			$conn=sql_conn();
+            $conn=sql_conn();
+			$nomef=mysqli_escape_string($conn, $nomef);
+			$descf=mysqli_escape_string($conn, $descf);
 			$timestamp_query="SELECT f.Time
 							  FROM Fonti f
 							  WHERE f.CodAuto='$id'";
-			$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-			if($row=mysql_fetch_row($timestamp_query)){
+			$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+			if($row=mysqli_fetch_row($timestamp_query)){
 				$timestamp_db=$row[0];
 				$timestamp_db=strtotime($timestamp_db);
 				if($timestampf<$timestamp_db){
@@ -82,7 +82,7 @@ END;
 				}
 				else{
 					$query="CALL modifyFonte('$id','$nomef','$descf');";
-					$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+					$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 					$title="Fonte Modificata";
 					startpage_builder($title);
 echo<<<END
@@ -109,14 +109,14 @@ END;
 	}
 	else{
 		$id=$_GET['id'];
-		$id=mysql_escape_string($id);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$id=mysqli_escape_string($conn, $id);
 		$query="SELECT f.CodAuto, f.IdFonte, f.Nome, f.Descrizione, f.Time
 				FROM Fonti f
 				WHERE f.CodAuto='$id'";
-		$fonte=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$fonte=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$row=mysql_fetch_row($fonte);
+		$row=mysqli_fetch_row($fonte);
 		if($row[0]==$id){
 			$title="Modifica Fonte - $row[1]";
 			startpage_builder($title);

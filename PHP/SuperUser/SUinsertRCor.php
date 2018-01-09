@@ -18,11 +18,11 @@ function sql_conn_testDB(){
 	$user="INSERIRE_NOME_UTENTE_DB";
 	$pwd="INSERIRE_PASSWD_DB";
 	$dbname="INSERIRE_NOME_DB";
-	$conn=mysql_connect($host,$user,$pwd)
+	$conn=mysqli_connect($host,$user,$pwd)
 			or die($_SERVER['PHP_SELF'] . ": Connessione Fallita!<br />");
-	mysql_select_db($dbname);
+	mysqli_select_db($conn,$dbname);
 	$query="SET @@session.max_sp_recursion_depth = 255";
-    $query=mysql_query($query,$conn) or die($_SERVER['PHP_SELF'] ."Query fallita: ".mysql_error($conn));
+    $query=mysqli_query($conn,$query) or die($_SERVER['PHP_SELF'] ."Query fallita: ".mysqli_error($conn));
 	return $conn;
 }
 
@@ -56,7 +56,7 @@ END;
 			if($UC != '' && $listReq != '')
 			{
 				$query= "CALL SUinsertRQ('$UC','$listReq')";
-				mysql_query($query,$conn) or die("Query fallita: ".mysql_error($conn));
+				mysqli_query($conn,$query) or die("Query fallita: ".mysqli_error($conn));
 			}
 			else
 			{

@@ -24,6 +24,7 @@ else{
 	$sections=array('Test di Validazione','Test di Sistema','Test di Integrazione','Test di Unità');
 	$headers=array('Id Test','Descrizione','Stato');
 	//$query_ord="CALL sortForest('Requisiti')";
+    $conn=sql_conn();
 	$queries[]="SELECT t.CodAuto, CONCAT('TV',SUBSTRING(r.IdRequisito,2)), t.Descrizione, t.Implementato, t.Eseguito, t.Esito
 				FROM Test t JOIN (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) ON t.Requisito=r.CodAuto
 				WHERE t.Tipo='Validazione'
@@ -40,11 +41,10 @@ else{
 				FROM Test t
 				WHERE t.Tipo='Unita'
 				ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
-	$conn=sql_conn();
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 	foreach($queries as $ind => $query){
-		$test=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$row=mysql_fetch_row($test);
+		$test=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$row=mysqli_fetch_row($test);
 		if($row[0]!=null){
 echo<<<END
 \\subsection{{$sections[$ind]}}
@@ -62,7 +62,7 @@ echo<<<END
 \\endhead
 END;
 			testTex($conn, $row);
-			while($row=mysql_fetch_row($test)){
+			while($row=mysqli_fetch_row($test)){
 				testTex($conn, $row);
 			}
 echo<<<END

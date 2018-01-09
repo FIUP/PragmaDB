@@ -15,13 +15,13 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$id=$_GET['id'];
-	$id=mysql_escape_string($id);
 	$conn=sql_conn();
+	$id=mysqli_escape_string($conn, $id);
 	$query="SELECT f.CodAuto, f.IdFonte, f.Nome, f.Descrizione, f.Time
 			FROM Fonti f
 			WHERE f.CodAuto='$id'";
-	$req=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row=mysql_fetch_row($req);
+	$req=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row=mysqli_fetch_row($req);
 	if($row[0]==$id){
 		$title="Dettaglio Fonte - $row[1]";
 		startpage_builder($title);
@@ -55,9 +55,9 @@ END;
 				FROM _MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto
 				WHERE r.Fonte='$id'
 				ORDER BY h.Position";
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$req=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$row = mysql_fetch_row($req);
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+		$req=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$row = mysqli_fetch_row($req);
 		if($row[0]!=null){
 echo<<<END
 
@@ -65,7 +65,7 @@ echo<<<END
 					<dd><a class="link-color-pers" href="$absurl/Requisiti/dettagliorequisito.php?id=$row[0]">$row[1] - $row[2]</a></dd>
 END;
 		}
-		while($row = mysql_fetch_row($req)){
+		while($row = mysqli_fetch_row($req)){
 echo<<<END
 
 					<dd><a class="link-color-pers" href="$absurl/Requisiti/dettagliorequisito.php?id=$row[0]">$row[1] - $row[2]</a></dd>

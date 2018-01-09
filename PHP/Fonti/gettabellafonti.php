@@ -23,8 +23,8 @@ else{
 	$query="SELECT f.IdFonte,f.Nome,f.Descrizione
 			FROM Fonti f
 			ORDER BY f.IdFonte";
-	$fonti=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row=mysql_fetch_row($fonti);
+	$fonti=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row=mysqli_fetch_row($fonti);
 	if($row[0]!=null){
 echo<<<END
 \\small
@@ -33,7 +33,7 @@ echo<<<END
 \\textbf{{$headers[0]}} & \\textbf{{$headers[1]}} & \\textbf{{$headers[2]}}\\\
 \\hline
 END;
-		while($row=mysql_fetch_row($fonti)){
+		while($row=mysqli_fetch_row($fonti)){
 echo<<<END
 
 $row[0] & $row[1] & $row[2]\\\ \\hline

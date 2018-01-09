@@ -24,8 +24,8 @@ else{
 			   FROM (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) JOIN Test t ON r.CodAuto=t.Requisito
 			   WHERE t.Tipo='Sistema'
 			   ORDER BY h.Position";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$requi=mysql_query($query_requi,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	$requi=mysqli_query($conn, $query_requi) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Requisiti-Test di Sistema}
 \\normalsize
@@ -40,7 +40,7 @@ echo<<<END
 %\hline
 \\endhead
 END;
-	while($row_requi=mysql_fetch_row($requi)){
+	while($row_requi=mysqli_fetch_row($requi)){
 echo<<<END
 
 $row_requi[0] & \\hyperlink{{$row_requi[1]}}{{$row_requi[1]}}\\\ %\hline

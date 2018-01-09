@@ -25,8 +25,8 @@ else{
 				FROM Package p JOIN RequisitiPackage rp ON p.CodAuto=rp.CodPkg
 				WHERE p.PrefixNome<>'Premi'
 				ORDER BY p.PrefixNome";
-	//$upd=mysql_query($query_update,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$pkg=mysql_query($query_pkg,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$upd=mysqli_query($conn, $query_update) or fail("Query fallita: ".mysqli_error($conn));
+	$pkg=mysqli_query($conn, $query_pkg) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Componenti-Requisiti}
 \\normalsize
@@ -42,8 +42,8 @@ echo<<<END
 \\endhead
 END;
 	//$query_ord="CALL sortForest('Requisiti')";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	while($row_pkg=mysql_fetch_row($pkg)){
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	while($row_pkg=mysqli_fetch_row($pkg)){
 		componentiRequisitiTex($conn, $row_pkg);
 	}
 echo<<<END

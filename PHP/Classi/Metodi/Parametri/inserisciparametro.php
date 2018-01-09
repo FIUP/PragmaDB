@@ -15,6 +15,7 @@ if(empty($_SESSION['user'])){
 }
 else{
 	if(isset($_REQUEST['submit'])){
+        $conn=sql_conn();
 		$me=$_GET['me'];
 		$cl=$_POST['cl'];
 		$nomef=$_POST["nome"];
@@ -25,33 +26,32 @@ else{
 		$err_tipo=false;
 		$err_desc=false;
 		$err_pres=false;
-		$errori=0;
+		$errors=0;
 		if($nomef==null){
 			$err_nome=true;
-			$errori++;
+			$errors++;
 		}
 		if($tipof==null){
 			$err_tipo=true;
-			$errori++;
+			$errors++;
 		}
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
-		$nomef=mysql_escape_string($nomef);
-		$tipof=mysql_escape_string($tipof);
-		$descf=mysql_escape_string($descf);
-		$conn=sql_conn();
+		$nomef=mysqli_escape_string($conn, $nomef);
+		$tipof=mysqli_escape_string($conn,$tipof);
+		$descf=mysqli_escape_string($conn, $descf);
 		$query="SELECT p.CodAuto
 				FROM Parametro p
 				WHERE p.Nome='$nomef' AND p.Metodo='$me'";
-		$pres=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$pres=mysql_fetch_row($pres);
+		$pres=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$pres=mysqli_fetch_row($pres);
 		if($pres[0]!=null){
 			$err_pres=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -94,8 +94,8 @@ END;
 			$timestamp_query="SELECT c.Time
 							  FROM Classe c
 							  WHERE c.CodAuto='$cl'";
-			$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-			if($row=mysql_fetch_row($timestamp_query)){
+			$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+			if($row=mysqli_fetch_row($timestamp_query)){
 				$timestamp_db=$row[0];
 				$timestamp_db=strtotime($timestamp_db);
 				if($timestampf<$timestamp_db){
@@ -110,7 +110,7 @@ END;
 				}
 				else{
 					$query="CALL insertParametro('$nomef','$tipof','$descf','$me','$cl')";
-					$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+					$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 					$title="Parametro Inserito";
 					startpage_builder($title);
 echo<<<END
@@ -136,15 +136,15 @@ END;
 		}
 	}
 	else{
+        $conn=sql_conn();
 		$me=$_GET['me'];
-		$me=mysql_escape_string($me);
-		$conn=sql_conn();
+		$me=mysqli_escape_string($conn,$me);
 		$query="SELECT m.CodAuto, m.Nome, m.Classe
 				FROM Metodo m
 				WHERE m.CodAuto='$me'";
-		$metodo=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$metodo=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$row_me=mysql_fetch_row($metodo);
+		$row_me=mysqli_fetch_row($metodo);
 		if($row_me[0]==$me){
 			$title="$row_me[1] - Inserisci Parametro";
 			startpage_builder($title);

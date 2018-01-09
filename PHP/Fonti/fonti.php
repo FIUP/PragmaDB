@@ -18,7 +18,7 @@ else{
 	$query="SELECT f.CodAuto, f.IdFonte, f.Nome, f.Descrizione, f.Time
 			FROM Fonti f
 			ORDER BY f.IdFonte";
-	$req=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$req=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 	$title="Fonti";
 	startpage_builder($title);
 echo<<<END
@@ -44,7 +44,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-	while($row=mysql_fetch_row($req)){
+	while($row=mysqli_fetch_row($req)){
 echo<<<END
 
 						<tr>

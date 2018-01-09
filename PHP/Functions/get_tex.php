@@ -5,15 +5,15 @@ function classiRequisitiTex($conn, $row){
 			FROM RequisitiClasse rc JOIN (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) ON rc.CodReq=r.CodAuto
 			WHERE rc.CodClass='$row[0]'
 			ORDER BY h.Position";
-	$requi=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$requi_row=mysql_fetch_row($requi);
+	$requi=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$requi_row=mysqli_fetch_row($requi);
 	$prefix=$row[1];
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
 \\hyperref[{$row[1]}]{\\texttt{{$prefix}}} & $requi_row[0]
 END;
-	while($requi_row=mysql_fetch_row($requi)){
+	while($requi_row=mysqli_fetch_row($requi)){
 echo<<<END
 \\newline $requi_row[0]
 END;
@@ -29,15 +29,15 @@ function componentiRequisitiTex($conn, $row){
 			FROM RequisitiPackage rp JOIN (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) ON rp.CodReq=r.CodAuto
 			WHERE rp.CodPkg='$row[0]'
 			ORDER BY h.Position";
-	$requi=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$requi_row=mysql_fetch_row($requi);
+	$requi=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$requi_row=mysqli_fetch_row($requi);
 	$prefix=$row[1];
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
 \\hyperref[{$row[1]}]{\\texttt{{$prefix}}} & $requi_row[0]
 END;
-	while($requi_row=mysql_fetch_row($requi)){
+	while($requi_row=mysqli_fetch_row($requi)){
 echo<<<END
 \\newline $requi_row[0]
 END;
@@ -119,8 +119,8 @@ function fixMethodIntoBorder($prefix){
 }
 
 function fontiRequisitiTex($conn, $row, $query, $is_uc){
-	$requi=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	if($row_requi=mysql_fetch_row($requi)){
+	$requi=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	if($row_requi=mysqli_fetch_row($requi)){
 		if($is_uc==false){
 echo<<<END
 
@@ -133,7 +133,7 @@ echo<<<END
 \\hyperref[{$row[1]}]{{$row[1]}} & \\hyperlink{{$row_requi[0]}}{{$row_requi[0]}}
 END;
 		}
-		while($row_requi=mysql_fetch_row($requi)){
+		while($row_requi=mysqli_fetch_row($requi)){
 echo<<<END
 \\newline
 \\hyperlink{{$row_requi[0]}}{{$row_requi[0]}}
@@ -150,8 +150,8 @@ function glossarioTex(){
 	$query="SELECT g.Identificativo, g.Name, g.Description, g.First, g.FirstPlural, g.Text, g.Plural
 			FROM Glossario g
 			ORDER BY g.Identificativo";
-	$glo=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	if($row=mysql_fetch_row($glo)){
+	$glo=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	if($row=mysqli_fetch_row($glo)){
 echo<<<END
 \\newglossaryentry{{$row[0]}}
 {
@@ -172,7 +172,7 @@ echo<<<END
 }
 END;
 	}
-	while($row=mysql_fetch_row($glo)){
+	while($row=mysqli_fetch_row($glo)){
 echo<<<END
 
 
@@ -210,8 +210,8 @@ echo<<<END
 \\begin{figure}[H]
 \\capstart
 \\def\svgwidth{\columnwidth}
-\\input{../../../bin/img/st/package/pdf_tex/{$row[4]}.pdf_tex}
-\\caption{{$row[1]}}
+\\input{../../../bin/img/st/package/pdf_tex/{$riga[4]}.pdf_tex}
+\\caption{{$riga[1]}}
 \\end{figure}
 END;
 	}
@@ -232,8 +232,8 @@ END;
 				   FROM EreditaDa ed JOIN Classe c ON ed.Padre=c.CodAuto
 				   WHERE ed.Figlio='$riga[0]'
 				   ORDER BY c.PrefixNome";
-	$padri=mysql_query($queryEredita,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$riga_sub=mysql_fetch_row($padri);
+	$padri=mysqli_query($conn, $queryEredita) or fail("Query fallita: ".mysqli_error($conn));
+	$riga_sub=mysqli_fetch_row($padri);
 	if($riga_sub[0]!=null){
 echo<<<END
 
@@ -241,7 +241,7 @@ echo<<<END
 \\begin{itemize}
 \\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
-		while($riga_sub=mysql_fetch_row($padri)){
+		while($riga_sub=mysqli_fetch_row($padri)){
 echo<<<END
 
 \\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
@@ -256,8 +256,8 @@ END;
 					 FROM EreditaDa ed JOIN Classe c ON ed.Figlio=c.CodAuto
 					 WHERE ed.Padre='$riga[0]'
 					 ORDER BY c.PrefixNome";
-	$subclassi=mysql_query($querySubClassi,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$riga_sub=mysql_fetch_row($subclassi);
+	$subclassi=mysqli_query($conn, $querySubClassi)or fail("Query fallita: ".mysqli_error($conn));
+	$riga_sub=mysqli_fetch_row($subclassi);
 	if($riga_sub[0]!=null){
 echo<<<END
 
@@ -265,7 +265,7 @@ echo<<<END
 \\begin{itemize}
 \\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
 END;
-		while($riga_sub=mysql_fetch_row($subclassi)){
+		while($riga_sub=mysqli_fetch_row($subclassi)){
 echo<<<END
 
 \\item \\hyperref[{$riga_sub[0]}]{\\texttt{{$riga_sub[1]}}}
@@ -284,10 +284,10 @@ END;
 						FROM Relazione r JOIN Classe c ON r.A=c.CodAuto
 						WHERE r.Da='$riga[0]'
 						ORDER BY c.PrefixNome";
-	$in=mysql_query($queryRelationsIN,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$out=mysql_query($queryRelationsOUT,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$riga_in=mysql_fetch_row($in);
-	$riga_out=mysql_fetch_row($out);
+	$in=mysqli_query($conn, $queryRelationsIN) or fail("Query fallita: ".mysqli_error($conn));
+	$out=mysqli_query($conn, $queryRelationsOUT) or fail("Query fallita: ".mysqli_error($conn));
+	$riga_in=mysqli_fetch_row($in);
+	$riga_out=mysqli_fetch_row($out);
 	if(($riga_in[0]!=null) || ($riga_out[0]!=null)){
 echo<<<END
 
@@ -301,7 +301,7 @@ echo<<<END
 $riga_in[2]
 END;
 		}
-		while($riga_in=mysql_fetch_row($in)){
+		while($riga_in=mysqli_fetch_row($in)){
 echo<<<END
 
 \\item \\textit{IN} \\hyperref[{$riga_in[0]}]{\\texttt{{$riga_in[1]}}}\\\
@@ -315,7 +315,7 @@ echo<<<END
 $riga_out[2]
 END;
 		}
-		while($riga_out=mysql_fetch_row($out)){
+		while($riga_out=mysqli_fetch_row($out)){
 echo<<<END
 
 \\item \\textit{OUT} \\hyperref[{$riga_out[0]}]{\\texttt{{$riga_out[1]}}}\\\
@@ -342,8 +342,8 @@ function packageClassiDPTex($conn, $riga){
 			FROM Attributo a
 			WHERE a.Classe='$riga[0]'
 			ORDER BY a.Nome";
-	$attr=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	if($row_attr = mysql_fetch_row($attr)){
+	$attr=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	if($row_attr = mysqli_fetch_row($attr)){
 echo<<<END
 
 \\item \\textbf{Attributi}:
@@ -365,7 +365,7 @@ echo<<<END
 
 \\\ {$row_attr[3]}
 END;
-		while($row_attr = mysql_fetch_row($attr)){
+		while($row_attr = mysqli_fetch_row($attr)){
 			if($row_attr[0]=="#"){
 echo<<<END
 
@@ -392,8 +392,8 @@ END;
 			FROM Metodo m
 			WHERE m.Classe='$riga[0]'
 			ORDER BY m.Nome";
-	$met=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row_met = mysql_fetch_row($met);
+	$met=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row_met = mysqli_fetch_row($met);
 	if($row_met[0]!=null){
 echo<<<END
 
@@ -417,14 +417,14 @@ END;
 				FROM Parametro p
 				WHERE p.Metodo=$row_met[0]
 				ORDER BY p.CodAuto";
-		$par=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$par_desc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		if($row_par=mysql_fetch_row($par)){
+		$par=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$par_desc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		if($row_par=mysqli_fetch_row($par)){
 echo<<<END
 {$row_par[0]}: {$row_par[1]}
 END;
 		}
-		while($row_par=mysql_fetch_row($par)){
+		while($row_par=mysqli_fetch_row($par)){
 echo<<<END
 , {$row_par[0]}: {$row_par[1]}
 END;
@@ -441,7 +441,7 @@ echo<<<END
 }}
 \\\ {$row_met[4]}
 END;
-		if($row_desc=mysql_fetch_row($par_desc)){
+		if($row_desc=mysqli_fetch_row($par_desc)){
 echo<<<END
 
 \\\ \\textbf{Parametri}:
@@ -449,7 +449,7 @@ echo<<<END
 \\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
 \\\ {$row_desc[2]}
 END;
-			while($row_desc=mysql_fetch_row($par_desc)){
+			while($row_desc=mysqli_fetch_row($par_desc)){
 echo<<<END
 
 \\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
@@ -461,7 +461,7 @@ echo<<<END
 \\end{itemize}
 END;
 		}
-		while($row_met = mysql_fetch_row($met)){
+		while($row_met = mysqli_fetch_row($met)){
 			if($row_met[1]=="#"){
 echo<<<END
 
@@ -479,14 +479,14 @@ END;
 					FROM Parametro p
 					WHERE p.Metodo=$row_met[0]
 					ORDER BY p.CodAuto";
-			$par=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-			$par_desc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-			if($row_par=mysql_fetch_row($par)){
+			$par=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+			$par_desc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+			if($row_par=mysqli_fetch_row($par)){
 echo<<<END
 {$row_par[0]}: {$row_par[1]}
 END;
 			}
-			while($row_par=mysql_fetch_row($par)){
+			while($row_par=mysqli_fetch_row($par)){
 echo<<<END
 , {$row_par[0]}: {$row_par[1]}
 END;
@@ -503,7 +503,7 @@ echo<<<END
 }}
 \\\ {$row_met[4]}
 END;
-			if($row_desc=mysql_fetch_row($par_desc)){
+			if($row_desc=mysqli_fetch_row($par_desc)){
 echo<<<END
 
 \\\ \\textbf{Parametri}:
@@ -511,7 +511,7 @@ echo<<<END
 \\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
 \\\ {$row_desc[2]}
 END;
-				while($row_desc=mysql_fetch_row($par_desc)){
+				while($row_desc=mysqli_fetch_row($par_desc)){
 echo<<<END
 
 \\item \\nogloxy{\\texttt{{$row_desc[0]}: {$row_desc[1]}}}
@@ -557,12 +557,12 @@ function requisitiArTex($conn, $row){
 			FROM RequisitiUC ruc JOIN (_MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto) ON ruc.UC=u.CodAuto
 			WHERE ruc.CodReq='$row[0]'
 			ORDER BY h.Position";
-	$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 
 \\hypertarget{{$row[1]}}{{$row[1]}} & $row[2] & $row[3] &\\hyperlink{{$row[4]}}{{$row[4]}}
 END;
-	while($uc_row=mysql_fetch_row($uc)){
+	while($uc_row=mysqli_fetch_row($uc)){
 echo<<<END
 \\newline
 \\hyperref[{$uc_row[0]}]{{$uc_row[0]}}
@@ -579,15 +579,15 @@ function requisitiClassiTex($conn, $row){
 			FROM RequisitiClasse rc JOIN Classe c ON rc.CodClass=c.CodAuto
 			WHERE rc.CodReq='$row[0]'
 			ORDER BY c.PrefixNome";
-	$cl=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$cl_row=mysql_fetch_row($cl);
+	$cl=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$cl_row=mysqli_fetch_row($cl);
 	$prefix=$cl_row[0];
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
 $row[1] & \\hyperref[{$cl_row[0]}]{\\texttt{{$prefix}}}
 END;
-	while($cl_row=mysql_fetch_row($cl)){
+	while($cl_row=mysqli_fetch_row($cl)){
 		$prefix=$cl_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
@@ -605,15 +605,15 @@ function requisitiComponentiTex($conn, $row){
 			FROM RequisitiPackage rp JOIN Package p ON rp.CodPkg=p.CodAuto
 			WHERE rp.CodReq='$row[0]' AND p.PrefixNome<>'Premi'
 			ORDER BY p.PrefixNome";
-	$pkg=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$pkg_row=mysql_fetch_row($pkg);
+	$pkg=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$pkg_row=mysqli_fetch_row($pkg);
 	$prefix=$pkg_row[0];
 	$prefix=fixIntoBorder($prefix);
 echo<<<END
 
 $row[1] & \\hyperref[{$pkg_row[0]}]{\\texttt{{$prefix}}}
 END;
-	while($pkg_row=mysql_fetch_row($pkg)){
+	while($pkg_row=mysqli_fetch_row($pkg)){
 		$prefix=$pkg_row[0];
 		$prefix=fixIntoBorder($prefix);
 echo<<<END
@@ -631,12 +631,12 @@ function requisitiFontiTex($conn, $row){
 			FROM RequisitiUC ruc JOIN (_MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto) ON ruc.UC=u.CodAuto
 			WHERE ruc.CodReq='$row[0]'
 			ORDER BY h.Position";
-	$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 
 \\hyperlink{{$row[1]}}{{$row[1]}} & \\hyperlink{{$row[2]}}{{$row[2]}}
 END;
-	while($uc_row=mysql_fetch_row($uc)){
+	while($uc_row=mysqli_fetch_row($uc)){
 echo<<<END
 \\newline
 \\hyperref[{$uc_row[0]}]{{$uc_row[0]}}

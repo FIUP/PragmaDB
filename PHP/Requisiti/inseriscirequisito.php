@@ -38,18 +38,18 @@ else{
 		$err_importanza_padre=false;
 		$err_stato=false;
 		$err_fonte=false;
-		$errori=0;
+		$errors=0;
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
 		if(!(isset($tipof))){
 			$err_tipo=true;
-			$errori++;
+			$errors++;
 		}
 		if(!(isset($importanzaf))){
 			$err_importanza=true;
-			$errori++;
+			$errors++;
 		}
 		else{
 			if($importanzaf=="1"){
@@ -58,7 +58,7 @@ else{
 			else{
 				if(!(isset($statof))){
 					$err_stato=true;
-					$errori++;
+					$errors++;
 				}
 			}
 		}
@@ -67,24 +67,24 @@ else{
 			$query="SELECT r.Tipo+0,r.Importanza+0
 					FROM Requisiti r
 					WHERE r.CodAuto='$padref'";
-			$ris=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-			$row=mysql_fetch_row($ris);
+			$ris=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+			$row=mysqli_fetch_row($ris);
 			if($row[0]!=null){
 				if($row[0]!=$tipof){
 					$err_tipo_padre=true;
-					$errori++;
+					$errors++;
 				}
 				if($row[1]>$importanzaf){
 					$err_importanza_padre=true;
-					$errori++;
+					$errors++;
 				}
 			}
 		}
 		if($fontef=="N/D"){
 			$err_fonte=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -147,7 +147,7 @@ END;
 				$temp=$_POST["uc$i"];
 				$ucf="$ucf"."$temp".",";
 			}
-			$descf=mysql_escape_string($descf);
+			$descf=mysqli_escape_string($conn, $descf);
 			$conn=sql_conn();
 			if($padref=="N/D"){
 				$query="CALL insertRequisito('$_SESSION[user]','$descf',$tipof,$importanzaf,null,'$statof','$implementatof','$soddisfattof','$fontef','$ucf')";
@@ -155,7 +155,7 @@ END;
 			else{
 				$query="CALL insertRequisito('$_SESSION[user]','$descf',$tipof,$importanzaf,'$padref','$statof','$implementatof','$soddisfattof','$fontef','$ucf')";
 			}
-			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn).$_SESSION['user']);
+			$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn).$_SESSION['user']);
 			$title="Requisito Inserito";
 			startpage_builder($title);
 echo<<<END
@@ -203,14 +203,14 @@ echo<<<END
 END;
 		$conn=sql_conn();
 		//$query_ord="CALL sortForest('Requisiti')";
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 		foreach($tipi as $tipo){
 echo<<<END
 
 									<optgroup label="$tipo" class="first-opt">
 END;
 			$requi=extract_IdRequisiti($tipo);
-			while($row=mysql_fetch_row($requi)){
+			while($row=mysqli_fetch_row($requi)){
 				if($row[0]!=null){
 echo<<<END
 
@@ -251,8 +251,8 @@ END;
 		$query="SELECT f.CodAuto,f.IdFonte,f.Nome
 				FROM Fonti f
 				ORDER BY f.IdFonte;";
-		$fonti=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		while($row=mysql_fetch_row($fonti)){
+		$fonti=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		while($row=mysqli_fetch_row($fonti)){
 			if($row[0]!=null){
 echo<<<END
 
@@ -275,9 +275,9 @@ END;
 		$query="SELECT u.CodAuto,u.IdUC
 				FROM _MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto
 				ORDER BY h.Position";
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		while($row=mysql_fetch_row($uc)){
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+		$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		while($row=mysqli_fetch_row($uc)){
 			if($row[0]!=null){
 echo<<<END
 

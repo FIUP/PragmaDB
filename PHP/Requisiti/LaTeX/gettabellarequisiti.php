@@ -24,14 +24,14 @@ else{
 	$headers=array('Id Requisito','Importanza','Descrizione','Stato');
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('Requisiti')";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 	for($i=0;$i<4;$i++){
 		$query="SELECT r1.CodAuto,r1.IdRequisito,r1.Importanza,r1.Descrizione,r1.Soddisfatto
 				FROM _MapRequisiti h JOIN Requisiti r1 ON h.CodAuto=r1.CodAuto
 				WHERE r1.Tipo='$tipi[$i]'
 				ORDER BY h.Position";
-		$requi=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$row=mysql_fetch_row($requi);
+		$requi=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$row=mysqli_fetch_row($requi);
 		if($row[0]!=null){
 echo<<<END
 \\subsection{{$sections[$i]}}
@@ -48,9 +48,9 @@ echo<<<END
 \\endhead
 END;
 			//$query_ord="CALL sortForest('UseCase')";
-			//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
+			//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 			requisitiTex($conn, $row);
-			while($row=mysql_fetch_row($requi)){
+			while($row=mysqli_fetch_row($requi)){
 				requisitiTex($conn, $row);
 			}
 echo<<<END

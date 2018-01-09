@@ -45,13 +45,13 @@ echo<<<END
 END;
 			}
 			else{
+                $conn=sql_conn();
 				$newp=sha1($newp);
-				$newp=mysql_escape_string($newp);
-				$conn=sql_conn();
+				$newp=mysqli_escape_string($conn,$newp);
 				$query="UPDATE Utenti u
 						SET u.Password='$newp'
 						WHERE u.Username='$user'";
-				$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+				$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 				$title="Password Modificata";
 				startpage_builder($title);
 echo<<<END

@@ -10,8 +10,8 @@ if($_GET["dHjhlCaf"]=="8sdfjhG34239bj3r459srglQjhq3r"){
 	$query="SELECT g.Name, g.First, g.FirstPlural, g.Text, g.Plural
 			FROM Glossario g
 			ORDER BY g.IdTermine";
-	$glo=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	while($row=mysql_fetch_row($glo)){
+	$glo=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	while($row=mysqli_fetch_row($glo)){
 		for($i=0;$i<5;$i++){
 			if($row[$i]!=null){
 				echo"$row[$i]\n";

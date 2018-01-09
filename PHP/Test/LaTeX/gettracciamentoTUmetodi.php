@@ -24,7 +24,7 @@ else{
 			   FROM TestMetodi tm JOIN Test t ON tm.CodTest=t.CodAuto
 			   WHERE t.Tipo='Unita'
 			   ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
-	$tu=mysql_query($query_tu,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$tu=mysqli_query($conn, $query_tu) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Test di Unità-Metodi}
 \\normalsize
@@ -39,17 +39,17 @@ echo<<<END
 %\hline
 \\endhead
 END;
-	while($row_tu=mysql_fetch_row($tu)){
+	while($row_tu=mysqli_fetch_row($tu)){
 		$query="SELECT m.CodAuto,m.AccessMod,m.Nome,m.ReturnType, c.PrefixNome, c.CodAuto
 				FROM (TestMetodi tm JOIN Metodo m ON tm.CodMet=m.CodAuto) JOIN Classe c ON m.Classe=c.CodAuto
 				WHERE tm.CodTest='$row_tu[0]'
 				ORDER BY c.PrefixNome, m.Nome"; //Query che carica i metodi della classe
-		$met=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$met=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 
 \\hyperlink{{$row_tu[1]}}{{$row_tu[1]}}
 END;
-		while($riga = mysql_fetch_row($met)){
+		while($riga = mysqli_fetch_row($met)){
 			$prefix=$riga[4]."::".$riga[2]."()";
 			$prefix=fixMethodIntoBorder($prefix);
 			/*if($riga[1]=="#"){

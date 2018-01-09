@@ -18,12 +18,12 @@ else{
 		$nomef=$_POST["nome"];
 		$descf=$_POST["desc"];
 		$err_nome=false;
-		$errori=0;
+		$errors=0;
 		if($nomef==null){
 			$err_nome=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -35,11 +35,11 @@ echo<<<END
 END;
 		}
 		else{
-			$nomef=mysql_escape_string($nomef);
-			$descf=mysql_escape_string($descf);
-			$conn=sql_conn();
+            $conn=sql_conn();
+			$nomef=mysqli_escape_string($conn, $nomef);
+			$descf=mysqli_escape_string($conn, $descf);
 			$query="CALL insertAttore('$nomef','$descf');";
-			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+			$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 			$title="Attore Inserito";
 			startpage_builder($title);
 echo<<<END

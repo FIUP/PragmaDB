@@ -15,19 +15,19 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$cl=$_GET['cl'];
-	$cl=mysql_escape_string($cl);
-	$conn=sql_conn();
+    $conn=sql_conn();
+	$cl=mysqli_escape_string($conn, $cl);
 	$query="SELECT c.CodAuto, c.PrefixNome
 			FROM Classe c
 			WHERE c.CodAuto='$cl'";
-	$classe=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row_cl=mysql_fetch_row($classe);
+	$classe=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row_cl=mysqli_fetch_row($classe);
 	if($row_cl[0]==$cl){
 		$query="SELECT m.CodAuto, m.AccessMod, m.Nome, m.ReturnType, m.Descrizione
 				FROM Metodo m
 				WHERE m.Classe='$cl'
 				ORDER BY m.Nome";
-		$met=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$met=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$title="$row_cl[1] - Metodi";
 		startpage_builder($title);
 echo<<<END
@@ -62,7 +62,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-		while($row=mysql_fetch_row($met)){
+		while($row=mysqli_fetch_row($met)){
 echo<<<END
 
 						<tr>

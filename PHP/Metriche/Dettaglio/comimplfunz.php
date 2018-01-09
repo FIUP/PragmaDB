@@ -42,10 +42,10 @@ echo<<<END
 				</div>
 END;
 	$conn=sql_conn();
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 	foreach($queries as $ind => $query){
-		$ris=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		if($row=mysql_fetch_row($ris)){
+		$ris=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		if($row=mysqli_fetch_row($ris)){
 echo<<<END
 
 				<h4 id="$abbr[$ind]" class="subtable-title">$tabletitle[$ind]</h4>
@@ -67,7 +67,7 @@ echo<<<END
 					<tbody>
 						<tr>
 END;
-			requisito_table($row);
+			requirement_table($row);
 echo<<<END
 
 							<td>
@@ -79,12 +79,12 @@ echo<<<END
 							</td>
 						</tr>
 END;
-			while($row=mysql_fetch_row($ris)){
+			while($row=mysqli_fetch_row($ris)){
 echo<<<END
 
 						<tr>
 END;
-			requisito_table($row);
+			requirement_table($row);
 echo<<<END
 
 							<td>

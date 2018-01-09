@@ -15,13 +15,13 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$id=$_GET['id'];
-	$id=mysql_escape_string($id);
-	$conn=sql_conn();
+    $conn=sql_conn();
+	$id=mysqli_escape_string($conn, $id);
 	$query="SELECT m.CodAuto, m.AccessMod, m.Nome, m.ReturnType, m.Descrizione, c.PrefixNome, m.Classe
 			FROM Metodo m JOIN Classe c ON m.Classe=c.CodAuto
 			WHERE m.CodAuto='$id'"; //query che carica il metodo di id = $id
-	$met=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row=mysql_fetch_row($met);
+	$met=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row=mysqli_fetch_row($met);
 	if($row[0]==$id){
 		$title="Dettaglio Metodo - $row[2]";
 		startpage_builder($title);
@@ -84,8 +84,8 @@ END;
 				FROM Parametro p
 				WHERE p.Metodo='$id'
 				ORDER BY p.CodAuto"; //Query che carica i parametri del metodo
-		$par=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$riga = mysql_fetch_row($par);
+		$par=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$riga = mysqli_fetch_row($par);
 		if($riga[0]!=null){
 echo<<<END
 
@@ -94,7 +94,7 @@ echo<<<END
 					<dd><a class="link-color-pers" href="$absurl/Classi/Metodi/Parametri/dettaglioparametro.php?id=$riga[0]">$riga[1]</a>: $riga[2]</dd>
 END;
 		}
-		while($riga = mysql_fetch_row($par)){
+		while($riga = mysqli_fetch_row($par)){
 echo<<<END
 
 					<dd><a class="link-color-pers" href="$absurl/Classi/Metodi/Parametri/dettaglioparametro.php?id=$riga[0]">$riga[1]</a>: $riga[2]</dd>

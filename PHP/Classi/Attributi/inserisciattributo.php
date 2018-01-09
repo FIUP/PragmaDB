@@ -28,40 +28,40 @@ else{
 		$err_tipo=false;
 		$err_desc=false;
 		$err_pres=false;
-		$errori=0;
+		$errors=0;
 		if(!(isset($accf))){
 			$err_acc=true;
-			$errori++;
+			$errors++;
 		}
 		if($nomef==null){
 			$err_nome=true;
-			$errori++;
+			$errors++;
 		}
 		if($tipof==null){
 			$err_tipo=true;
-			$errori++;
+			$errors++;
 		}
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
+        $conn=sql_conn();
 		if(isset($accf)){
-			$accf=mysql_escape_string($accf);
+			$accf=mysqli_escape_string($conn,$accf);
 		}
-		$nomef=mysql_escape_string($nomef);
-		$tipof=mysql_escape_string($tipof);
-		$descf=mysql_escape_string($descf);
-		$conn=sql_conn();
+		$nomef=mysqli_escape_string($conn, $nomef);
+		$tipof=mysqli_escape_string($conn,$tipof);
+		$descf=mysqli_escape_string($conn, $descf);
 		$query="SELECT a.CodAuto
 				FROM Attributo a
 				WHERE a.Nome='$nomef' AND a.Classe='$cl'";
-		$pres=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$pres=mysql_fetch_row($pres);
+		$pres=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$pres=mysqli_fetch_row($pres);
 		if($pres[0]!=null){
 			$err_pres=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -110,8 +110,8 @@ END;
 			$timestamp_query="SELECT c.Time
 							  FROM Classe c
 							  WHERE c.CodAuto='$cl'";
-			$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-			if($row=mysql_fetch_row($timestamp_query)){
+			$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+			if($row=mysqli_fetch_row($timestamp_query)){
 				$timestamp_db=$row[0];
 				$timestamp_db=strtotime($timestamp_db);
 				if($timestampf<$timestamp_db){
@@ -126,7 +126,7 @@ END;
 				}
 				else{
 					$query="CALL insertAttributo('$accf','$nomef','$tipof','$descf','$cl')";
-					$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+					$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 					$title="Attributo Inserito";
 					startpage_builder($title);
 echo<<<END
@@ -153,14 +153,14 @@ END;
 	}
 	else{
 		$cl=$_GET['cl'];
-		$cl=mysql_escape_string($cl);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$cl=mysqli_escape_string($conn, $cl);
 		$query="SELECT c.CodAuto, c.PrefixNome
 				FROM Classe c
 				WHERE c.CodAuto='$cl'";
-		$classe=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$classe=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$row_cl=mysql_fetch_row($classe);
+		$row_cl=mysqli_fetch_row($classe);
 		if($row_cl[0]==$cl){
 			$title="$row_cl[1] - Inserisci Attributo";
 			startpage_builder($title);

@@ -20,7 +20,7 @@ else{
 			FROM Classe c JOIN Package p ON c.ContenutaIn=p.CodAuto
 			WHERE c.CodAuto NOT IN (SELECT rc.CodClass FROM RequisitiClasse rc)
 			ORDER BY c.PrefixNome";
-	$cl=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$cl=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 	$title="Classi Solitarie";
 	startpage_builder($title);
 echo<<<END
@@ -41,7 +41,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-	while($row=mysql_fetch_row($cl)){
+	while($row=mysqli_fetch_row($cl)){
 echo<<<END
 
 						<tr>

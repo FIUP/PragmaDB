@@ -24,8 +24,8 @@ else{
 		$timestamp_query="SELECT p.Time
 							FROM Package p
 							WHERE p.CodAuto='$id'"; //Query che recupera il timestamp dell'utlima modifica al db di $id
-		$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		if($row=mysql_fetch_row($timestamp_query)){
+		$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+		if($row=mysqli_fetch_row($timestamp_query)){
 			$timestamp_db=$row[0];
 			$timestamp_db=strtotime($timestamp_db);
 			if($timestampf<$timestamp_db){
@@ -42,7 +42,7 @@ END;
 			}
 			else{
 				$query="CALL removePackage('$id')"; //Chiama la SP per la rimozione
-				$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+				$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 				$title="Package Eliminato";
 				startpage_builder($title);
 echo<<<END
@@ -72,14 +72,14 @@ END;
 	else{
 		//L'utente non ha ancora scelto se eliminare o meno, gli stampo quello che sta cercando di eliminare e un form per scegliere
 		$id=$_GET['id'];
-		$id=mysql_escape_string($id);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$id=mysqli_escape_string($conn, $id);
 		$query="SELECT p1.CodAuto,p1.PrefixNome,p1.Nome,p1.Descrizione,p2.PrefixNome,p1.UML,p2.CodAuto
 				FROM Package p1 LEFT JOIN Package p2 ON p1.Padre=p2.CodAuto
 				WHERE p1.CodAuto='$id'"; //Query per recuperare il Package
-		$pack=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$pack=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$row=mysql_fetch_row($pack);
+		$row=mysqli_fetch_row($pack);
 		if($row[0]==$id){
 			$title="Elimina Package - $row[1]";
 			startpage_builder($title);

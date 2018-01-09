@@ -23,7 +23,7 @@ else{
 			   FROM Test t JOIN Package p ON t.Package=p.CodAuto
 			   WHERE t.Tipo='Integrazione'
 			   ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
-	$ti=mysql_query($query_ti,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$ti=mysqli_query($conn, $query_ti) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Test di Integrazione-Componenti}
 \\normalsize
@@ -38,7 +38,7 @@ echo<<<END
 %\hline
 \\endhead
 END;
-	while($row_ti=mysql_fetch_row($ti)){
+	while($row_ti=mysqli_fetch_row($ti)){
 echo<<<END
 
 \\hyperlink{{$row_ti[0]}}{{$row_ti[0]}} & \\nogloxy{\\texttt{{$row_ti[1]}}}\\\ %\hline

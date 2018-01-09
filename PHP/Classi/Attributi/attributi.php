@@ -14,20 +14,20 @@ if(empty($_SESSION['user'])){
 	header("Location: $absurl/error.php");
 }
 else{
+    $conn=sql_conn();
 	$cl=$_GET['cl'];
-	$cl=mysql_escape_string($cl);
-	$conn=sql_conn();
+	$cl=mysqli_escape_string($conn, $cl);
 	$query="SELECT c.CodAuto, c.PrefixNome
 			FROM Classe c
 			WHERE c.CodAuto='$cl'";
-	$classe=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row_cl=mysql_fetch_row($classe);
+	$classe=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$row_cl=mysqli_fetch_row($classe);
 	if($row_cl[0]==$cl){
 		$query="SELECT a.CodAuto, a.AccessMod, a.Nome, a.Tipo, a.Descrizione
 				FROM Attributo a
 				WHERE a.Classe='$cl'
 				ORDER BY a.Nome";
-		$attr=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$attr=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$title="$row_cl[1] - Attributi";
 		startpage_builder($title);
 echo<<<END
@@ -62,7 +62,7 @@ echo<<<END
 					</thead>
 					<tbody>
 END;
-		while($row=mysql_fetch_row($attr)){
+		while($row=mysqli_fetch_row($attr)){
 echo<<<END
 
 						<tr>

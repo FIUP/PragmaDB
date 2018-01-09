@@ -24,12 +24,12 @@ else{
 			FROM _MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto
 			WHERE r.Stato='1'
 			ORDER BY h.Position";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$requi=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	$requi=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\begin{itemize}
 END;
-	while($row=mysql_fetch_row($requi)){
+	while($row=mysqli_fetch_row($requi)){
 echo<<<END
 
 \\item \\hyperlink{{$row[0]}}{{$row[0]}}: $row[1];

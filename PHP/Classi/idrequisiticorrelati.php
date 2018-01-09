@@ -15,20 +15,20 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$id=$_GET['id'];
-	$id=mysql_escape_string($id);
-	$conn=sql_conn();
+    $conn=sql_conn();
+	$id=mysqli_escape_string($conn, $id);
 	$query_cl="SELECT c.CodAuto, c.PrefixNome
 			   FROM Classe c
 			   WHERE c.CodAuto='$id'";
-	$cl=mysql_query($query_cl,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$row_cl=mysql_fetch_row($cl);
+	$cl=mysqli_query($conn,$query_cl) or fail("Query fallita: ".mysqli_error($conn));
+	$row_cl=mysqli_fetch_row($cl);
 	if($row_cl[0]==$id){
 		//$query_ord="CALL sortForest('Requisiti')";
 		$query="SELECT r1.CodAuto, r1.IdRequisito
 				FROM RequisitiClasse rc JOIN (_MapRequisiti h JOIN Requisiti r1 ON h.CodAuto=r1.CodAuto) ON rc.CodReq=r1.CodAuto
 				WHERE rc.CodClass='$id'"; //query che carica i requisiti correlati alla classe con id = $id
-		//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$req=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+		$req=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$title="Requisiti Correlati - $row_cl[1]";
 		startpage_builder($title);
 echo<<<END
@@ -47,11 +47,11 @@ echo<<<END
 					<h4 class="widget-title">Requisiti Correlati</h4>
 					<p>
 END;
-		if($row=mysql_fetch_row($req)){
+		if($row=mysqli_fetch_row($req)){
 echo<<<END
 <a class="link-color-pers" href="$absurl/Requisiti/dettagliorequisito.php?id=$row[0]">$row[1]</a>
 END;
-			while($row=mysql_fetch_row($req)){
+			while($row=mysqli_fetch_row($req)){
 echo<<<END
 , <a class="link-color-pers" href="$absurl/Requisiti/dettagliorequisito.php?id=$row[0]">$row[1]</a>
 END;

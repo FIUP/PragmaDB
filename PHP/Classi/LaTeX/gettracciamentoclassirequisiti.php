@@ -23,7 +23,7 @@ else{
 	$query_cl="SELECT DISTINCT c.CodAuto, c.PrefixNome
 				FROM Classe c JOIN RequisitiClasse rc ON c.CodAuto=rc.CodClass
 				ORDER BY c.PrefixNome";
-	$cl=mysql_query($query_cl,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$cl=mysqli_query($conn,$query_cl) or fail("Query fallita: ".mysqli_error($conn));
 echo<<<END
 \\subsection{Tracciamento Classi-Requisiti}
 \\normalsize
@@ -39,8 +39,8 @@ echo<<<END
 \\endhead
 END;
 	//$query_ord="CALL sortForest('Requisiti')";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	while($row_cl=mysql_fetch_row($cl)){
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	while($row_cl=mysqli_fetch_row($cl)){
 		classiRequisitiTex($conn, $row_cl);
 	}
 echo<<<END

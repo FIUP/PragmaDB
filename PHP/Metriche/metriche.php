@@ -26,139 +26,139 @@ else{
 	//Requisiti Obbligatori Soddisfatti
 	$query="SELECT COUNT(*) FROM Requisiti r WHERE r.Importanza='Obbligatorio' AND r.Soddisfatto='1'";
 	$query_app="SELECT COUNT(*) FROM Requisiti r WHERE r.Importanza='Obbligatorio'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Requisiti Accettati Soddisfatti
 	$query="SELECT COUNT(*) FROM Requisiti r WHERE r.Stato='1' AND r.Soddisfatto='1'";
 	$query_app="SELECT COUNT(*) FROM Requisiti r WHERE r.Stato='1'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Requisiti Non Accettati Soddisfatti
 	$query="SELECT COUNT(*) FROM Requisiti r WHERE r.Importanza<>'Obbligatorio' AND r.Stato='0' AND r.Soddisfatto='1'";
 	$query_app="SELECT COUNT(*) FROM Requisiti r WHERE r.Importanza<>'Obbligatorio' AND r.Stato='0'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//SFIN - Ottimalita
 	$query="SELECT COUNT(*) FROM Relazione r GROUP BY r.A HAVING COUNT(*)>1";
 	$query_app="SELECT COUNT(*) FROM Classe c";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
 	$i=0;
-	while($ris=mysql_fetch_row($query)){
+	while($ris=mysqli_fetch_row($query)){
 		$i++;
 	}
-	$num=mysql_fetch_row($query_app);
+	$num=mysqli_fetch_row($query_app);
 	$num=$num[0];
 	$value[]=($i/$num)*100;
 	//SFOUT - Non Accettabilita
 	$query="SELECT COUNT(*) FROM Relazione r GROUP BY r.Da HAVING COUNT(*)>5";
 	$query_app="SELECT COUNT(*) FROM Classe";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
 	$i=0;
-	while($ris=mysql_fetch_row($query)){
+	while($ris=mysqli_fetch_row($query)){
 		$i++;
 	}
-	$num=mysql_fetch_row($query_app);
+	$num=mysqli_fetch_row($query_app);
 	$num=$num[0];
 	$value[]=($i/$num)*100;
 	//Metodi per classe - Non Accettabilità
 	$query="SELECT COUNT(*) FROM Metodo m GROUP BY m.Classe HAVING COUNT(*)>10";
 	$query_app="SELECT COUNT(*) FROM Classe";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
 	$i=0;
-	while($ris=mysql_fetch_row($query)){
+	while($ris=mysqli_fetch_row($query)){
 		$i++;
 	}
-	$num=mysql_fetch_row($query_app);
+	$num=mysqli_fetch_row($query_app);
 	$num=$num[0];
 	$value[]=($i/$num)*100;
 	//Parametri per metodo - Non Accettabilità
 	$query="SELECT COUNT(*) FROM Parametro p GROUP BY p.Metodo HAVING COUNT(*)>8";
 	$query_app="SELECT COUNT(*) FROM Metodo";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
 	$i=0;
-	while($ris=mysql_fetch_row($query)){
+	while($ris=mysqli_fetch_row($query)){
 		$i++;
 	}
-	$num=mysql_fetch_row($query_app);
+	$num=mysqli_fetch_row($query_app);
 	$num=$num[0];
 	$value[]=($i/$num)*100;
 	//Componenti integrate
 	$query="SELECT DISTINCT COUNT(r.CodAuto) FROM RequisitiPackage rp JOIN Requisiti r ON rp.CodReq=r.CodAuto WHERE r.Soddisfatto='1' AND (r.Importanza='Obbligatorio' OR r.Stato='1')";
 	$query_app="SELECT DISTINCT COUNT(r.CodAuto) FROM RequisitiPackage rp JOIN Requisiti r ON rp.CodReq=r.CodAuto WHERE r.Importanza='Obbligatorio' OR r.Stato='1'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Test di unità eseguiti
 	$query="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Unita' AND t.Eseguito='1'";
 	$query_app="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Unita'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Test di integrazione eseguiti
 	$query="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Integrazione' AND t.Eseguito='1'";
 	$query_app="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Integrazione'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Test di sistema eseguiti
 	$query="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Sistema' AND t.Eseguito='1'";
 	$query_app="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Sistema'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Test di validazione eseguiti
 	$query="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Validazione' AND t.Eseguito='1'";
 	$query_app="SELECT COUNT(*) FROM Test t WHERE t.Tipo='Validazione'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Test superati
 	$query="SELECT COUNT(*) FROM Test t WHERE t.Esito='1'";
 	$query_app="SELECT COUNT(*) FROM Test t WHERE t.Eseguito='1'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	if($query_app==0){
 		$query_app=1;
@@ -167,21 +167,21 @@ else{
 	//Completezza dell'implementazione funzionale
 	$query="SELECT COUNT(*) FROM Requisiti r WHERE r.Tipo='Funzionale' AND (r.Importanza='Obbligatorio' OR r.Stato='1') AND r.Soddisfatto='1'";
 	$query_app="SELECT COUNT(*) FROM Requisiti r WHERE r.Tipo='Funzionale' AND (r.Importanza='Obbligatorio' OR r.Stato='1')";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	$value[]=($query/$query_app)*100;
 	//Densità di failure
 	$query="SELECT COUNT(*) FROM Test t WHERE t.Eseguito='1' AND t.Esito='0'";
 	$query_app="SELECT COUNT(*) FROM Test t WHERE t.Eseguito='1'";
-	$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query_app=mysql_query($query_app,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$query=mysql_fetch_row($query);
+	$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	$query_app=mysqli_query($conn, $query_app) or fail("Query fallita: ".mysqli_error($conn));
+	$query=mysqli_fetch_row($query);
 	$query=$query[0];
-	$query_app=mysql_fetch_row($query_app);
+	$query_app=mysqli_fetch_row($query_app);
 	$query_app=$query_app[0];
 	if($query_app==0){
 		$query_app=1;

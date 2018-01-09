@@ -26,24 +26,24 @@ else{
 		$err_identificativo_special=false;
 		$err_name=false;
 		$err_desc=false;
-		$errori=0;
+		$errors=0;
 		if($identificativof==null){
 			$err_identificativo=true;
-			$errori++;
+			$errors++;
 		}
 		if(preg_match('/[^a-z]/i', $identificativof)>0){
 			$err_identificativo_special=true;
-			$errori++;
+			$errors++;
 		}
 		if($namef==null){
 			$err_name=true;
-			$errori++;
+			$errors++;
 		}
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -84,15 +84,15 @@ echo<<<END
 END;
 		}
 		else{
+            $conn=sql_conn();
 			$identificativof=lcfirst($identificativof);
-			$identificativof=mysql_escape_string($identificativof);
-			$namef=mysql_escape_string($namef);
-			$descf=mysql_escape_string($descf);
-			$firstf=mysql_escape_string($firstf);
-			$firstpluralf=mysql_escape_string($firstpluralf);
-			$textf=mysql_escape_string($textf);
-			$pluralf=mysql_escape_string($pluralf);
-			$conn=sql_conn();
+			$identificativof=mysqli_escape_string($conn, $identificativof);
+			$namef=mysqli_escape_string($conn, $namef);
+			$descf=mysqli_escape_string($conn, $descf);
+			$firstf=mysqli_escape_string($conn, $firstf);
+			$firstpluralf=mysqli_escape_string($conn, $firstpluralf);
+			$textf=mysqli_escape_string($conn, $textf);
+			$pluralf=mysqli_escape_string($conn, $pluralf);
 			$query="CALL insertGlossario('$identificativof','$namef','$descf',";
 			if($firstf==null){
 				$query=$query."null,";
@@ -118,7 +118,7 @@ END;
 			else{
 				$query=$query."'$pluralf')";
 			}
-			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+			$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 			$title="Termine Glossario Inserito";
 			startpage_builder($title);
 echo<<<END

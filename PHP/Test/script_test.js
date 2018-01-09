@@ -122,7 +122,7 @@ function validateForm(){
 		aler=aler+"TIPO: Non selezionato\n";
 		errors++;
 	}
-	if(desc.value==""){
+	if(desc.value===""){
 		aler=aler+"DESCRIZIONE: Non inserita\n";
 		errors++;
 	}
@@ -138,7 +138,7 @@ function validateForm(){
 		aler=aler+"METODO: Non indicato\n";
 		errors++;
 	}
-	if(errors==0){
+	if(errors===0){
 		document.getElementById("form").submit();
 	}
 	else{

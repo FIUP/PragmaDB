@@ -23,9 +23,9 @@ else{
 	$query="SELECT u.CodAuto,u.IdUC,u.Nome,u.Diagramma,u.Descrizione,u.Precondizioni,u.Postcondizioni,u.ScenarioPrincipale,u.Inclusioni,u.Estensioni,u.ScenariAlternativi,u.Padre
 			FROM _MapUseCase h JOIN UseCase u ON h.CodAuto=u.CodAuto
 			ORDER BY h.Position";
-	//$ord=mysql_query($query_ord,$conn) or fail("Query fallita: ".mysql_error($conn));
-	$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-	while($row=mysql_fetch_row($uc)){
+	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
+	$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+	while($row=mysqli_fetch_row($uc)){
 echo<<<END
 \\subsection{{$row[1]}: {$row[2]}}
 \\label{{$row[1]}}
@@ -45,14 +45,14 @@ END;
 				FROM AttoriUC auc JOIN Attori a ON auc.Attore=a.CodAuto
 				WHERE auc.UC='$row[0]'
 				ORDER BY a.Nome";
-		$attori=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		$row_attore=mysql_fetch_row($attori);
+		$attori=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
+		$row_attore=mysqli_fetch_row($attori);
 echo<<<END
 
 \\begin{itemize}
 \\item \\textbf{Attori}: $row_attore[0]
 END;
-		while($row_attore=mysql_fetch_row($attori)){
+		while($row_attore=mysqli_fetch_row($attori)){
 echo<<<END
 , $row_attore[0]
 END;

@@ -19,16 +19,16 @@ else{
 		$descf=$_POST["desc"];
 		$err_nome=false;
 		$err_desc=false;
-		$errori=0;
+		$errors=0;
 		if($nomef==null){
 			$err_nome=true;
-			$errori++;
+			$errors++;
 		}
 		if($descf==null){
 			$err_desc=true;
-			$errori++;
+			$errors++;
 		}
-		if($errori>0){
+		if($errors>0){
 			$title="Errore";
 			startpage_builder($title);
 echo<<<END
@@ -36,7 +36,7 @@ echo<<<END
 			<div id="content" class="alerts">
 				<h2>Errore nell'inserimento della fonte</h2>
 END;
-			if($errori>1){
+			if($errors>1){
 echo<<<END
 
 				<p>Non sono stati inseriti correttamente i campi 'Nome' e 'Descrizione'. <a class="link-color-pers" href="$absurl/Fonti/inseriscifonte.php">Riprova</a>.</p>
@@ -61,11 +61,11 @@ END;
 			}
 		}
 		else{
-			$nomef=mysql_escape_string($nomef);
-			$descf=mysql_escape_string($descf);
-			$conn=sql_conn();
+            $conn=sql_conn();
+			$nomef=mysqli_escape_string($conn, $nomef);
+			$descf=mysqli_escape_string($conn, $descf);
 			$query="CALL insertFonte('$nomef','$descf');";
-			$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+			$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 			$title="Fonte Inserita";
 			startpage_builder($title);
 echo<<<END

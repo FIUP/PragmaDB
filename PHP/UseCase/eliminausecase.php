@@ -24,8 +24,8 @@ else{
 		$timestamp_query="SELECT u.Time
 						  FROM UseCase u
 						  WHERE u.CodAuto='$id'";
-		$timestamp_query=mysql_query($timestamp_query,$conn) or fail("Query fallita: ".mysql_error($conn));
-		if($row=mysql_fetch_row($timestamp_query)){
+		$timestamp_query=mysqli_query($conn,$timestamp_query)or fail("Query fallita: ".mysqli_error($conn));
+		if($row=mysqli_fetch_row($timestamp_query)){
 			$timestamp_db=$row[0];
 			$timestamp_db=strtotime($timestamp_db);
 			if($timestampf<$timestamp_db){
@@ -41,7 +41,7 @@ END;
 			}
 			else{
 				$query="CALL removeUseCase('$id')";
-				$query=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+				$query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 				$title="Use Case Eliminato";
 				startpage_builder($title);
 echo<<<END
@@ -69,14 +69,14 @@ END;
 	}
 	else{
 		$id=$_GET['id'];
-		$id=mysql_escape_string($id);
-		$conn=sql_conn();
+        $conn=sql_conn();
+		$id=mysqli_escape_string($conn, $id);
 		$query="SELECT u1.CodAuto, u1.IdUC, u1.Nome, u1.Diagramma, u1.Descrizione, u1.Precondizioni, u1.Postcondizioni, u1.Padre, u1.ScenarioPrincipale, u1.Inclusioni, u1.Estensioni, u1.ScenariAlternativi, u1.Time, u2.IdUC
 				FROM UseCase u1 LEFT JOIN UseCase u2 ON u1.Padre=u2.CodAuto
 				WHERE u1.CodAuto='$id'";
-		$uc=mysql_query($query,$conn) or fail("Query fallita: ".mysql_error($conn));
+		$uc=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
 		$timestamp=time();
-		$row=mysql_fetch_row($uc);
+		$row=mysqli_fetch_row($uc);
 		if($row[0]==$id){
 			$title="Elimina Use Case - $row[1]";
 			startpage_builder($title);
