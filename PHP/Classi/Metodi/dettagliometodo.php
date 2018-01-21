@@ -32,7 +32,7 @@ echo<<<END
 				<dl class="widget">
 END;
 		//$heads: header dei campi di $row
-		$heads=array('','Accessibilità:','Nome:','Tipo Ritorno:','Descrizione:','Classe:');
+		$heads= ['','Accessibilità:','Nome:','Tipo Ritorno:','Descrizione:','Classe:'];
 echo<<<END
 
 					<dt class="widget-title">$heads[1]</dt>

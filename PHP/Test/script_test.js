@@ -126,15 +126,15 @@ function validateForm(){
 		aler=aler+"DESCRIZIONE: Non inserita\n";
 		errors++;
 	}
-	if((type1.checked &&  requi1.options[requi1.selectedIndex].text=="N/D") || (type2.checked && requi2.options[requi2.selectedIndex].text=="N/D")){
+	if((type1.checked &&  requi1.options[requi1.selectedIndex].text==="N/D") || (type2.checked && requi2.options[requi2.selectedIndex].text==="N/D")){
 		aler=aler+"REQUISITO: Non indicato\n";
 		errors++;
 	}
-	if((type3.checked) && (pkg.options[pkg.selectedIndex].text=="N/D")){
+	if((type3.checked) && (pkg.options[pkg.selectedIndex].text==="N/D")){
 		aler=aler+"COMPONENTE: Non indicato\n";
 		errors++;
 	}
-	if((type4.checked) && (met.options[met.selectedIndex].text=="N/D")){
+	if((type4.checked) && (met.options[met.selectedIndex].text==="N/D")){
 		aler=aler+"METODO: Non indicato\n";
 		errors++;
 	}

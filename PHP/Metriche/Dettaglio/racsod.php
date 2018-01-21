@@ -23,8 +23,8 @@ else{
 				FROM ((_MapRequisiti h JOIN Requisiti r1 ON h.CodAuto=r1.CodAuto) LEFT JOIN Requisiti r2 ON r1.Padre=r2.CodAuto) JOIN Fonti f ON r1.Fonte=f.CodAuto
 				WHERE r1.Stato='1' AND r1.Soddisfatto='1'
 				ORDER BY h.Position";
-	$tabletitle=array('Non Soddisfatti','Soddisfatti');
-	$abbr=array('nonsoddisfatti','soddisfatti');
+	$tabletitle= ['Non Soddisfatti','Soddisfatti'];
+	$abbr= ['nonsoddisfatti','soddisfatti'];
 	$title="Dettaglio Metrica - Requisiti Accettati Soddisfatti";
 	startpage_builder($title);
 echo<<<END

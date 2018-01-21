@@ -18,7 +18,7 @@ else{
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
 	
-	$headers=array('Fonte','Nome','Descrizione');
+	$headers= ['Fonte','Nome','Descrizione'];
 	$conn=sql_conn();
 	$query="SELECT f.IdFonte,f.Nome,f.Descrizione
 			FROM Fonti f

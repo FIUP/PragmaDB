@@ -158,7 +158,7 @@ echo<<<END
 name={{$row[1]}},
 description={{$row[2]}}
 END;
-		$headers=array('','','','first','firstplural','text','plural');
+		$headers= ['','','','first','firstplural','text','plural'];
 		for($i=3;$i<7;$i++){
 			if($row[$i]!=null){
 echo<<<END
@@ -181,7 +181,7 @@ echo<<<END
 name={{$row[1]}},
 description={{$row[2]}}
 END;
-		$headers=array('','','','first','firstplural','text','plural');
+		$headers= ['','','','first','firstplural','text','plural'];
 		for($i=3;$i<7;$i++){
 			if($row[$i]!=null){
 echo<<<END

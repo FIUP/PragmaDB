@@ -265,8 +265,8 @@ END;
 	}
 	else{
 		$id=$_GET['id'];
+        $conn=sql_conn();
 		$id=mysqli_escape_string($conn, $id);
-		$conn=sql_conn();
 		$query="SELECT p1.CodAuto,p1.PrefixNome,p1.Nome,p1.Descrizione,p1.Padre,p1.UML
 				FROM Package p1
 				WHERE p1.CodAuto='$id'";
@@ -335,7 +335,7 @@ END;
 					WHERE p.CodAuto<>'$id'
 					ORDER BY p.PrefixNome";
 			$tutti_pkg_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_pkg=array();
+			$tutti_pkg= [];
 			while($row=mysqli_fetch_row($tutti_pkg_query)){
 				$tutti_pkg["$row[1]"]=$row[0];
 			}
@@ -348,14 +348,14 @@ END;
 					WHERE rp.Pack2='$id'
 					ORDER BY PrefixNome";
 			$pkg_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$pkg=array();
+			$pkg= [];
 			$listaoldpkg="";
 			$i=0;
 			while($row=mysqli_fetch_row($pkg_query)){
 				$pkg["$row[1]"]=$row[0];
 				$listaoldpkg=($listaoldpkg.$row[0]).",";
 			}
-			$pkg_rimanenti=array();
+			$pkg_rimanenti= [];
 			foreach($tutti_pkg as $tiid => $tcod){
 				$trovato=false;
 				foreach($pkg as $conf_iid => $conf_cod){

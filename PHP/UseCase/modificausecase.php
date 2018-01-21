@@ -337,7 +337,7 @@ END;
 					FROM Attori a
 					ORDER BY a.Nome";
 			$tutti_attori_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_attori=array();
+			$tutti_attori= [];
 			while($row=mysqli_fetch_row($tutti_attori_query)){
 				$tutti_attori["$row[1]"]=$row[0];
 			}
@@ -346,12 +346,12 @@ END;
 					WHERE auc.UC='$id'
 					ORDER BY a.Nome";
 			$attori_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$attori=array();
+			$attori= [];
 			$i=0;
 			while($row=mysqli_fetch_row($attori_query)){
 				$attori["$row[1]"]=$row[0];
 			}
-			$attori_rimanenti=array();
+			$attori_rimanenti= [];
 			foreach($tutti_attori as $tnom => $tcod){
 				$trovato=false;
 				foreach($attori as $conf_nom => $conf_cod){
@@ -407,7 +407,7 @@ END;
 					ORDER BY h.Position";
 			//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 			$tutti_requi_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_requi=array();
+			$tutti_requi= [];
 			while($row=mysqli_fetch_row($tutti_requi_query)){
 				$tutti_requi["$row[1]"]=$row[0];
 			}
@@ -416,14 +416,14 @@ END;
 					WHERE ruc.UC='$id'
 					ORDER BY h.Position";
 			$requi_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$requi=array();
+			$requi= [];
 			$listaoldrequi="";
 			$j=0;
 			while($row=mysqli_fetch_row($requi_query)){
 				$requi["$row[1]"]=$row[0];
 				$listaoldrequi=($listaoldrequi.$row[0]).",";
 			}
-			$requi_rimanenti=array();
+			$requi_rimanenti= [];
 			foreach($tutti_requi as $tiid => $tcod){
 				$trovato=false;
 				foreach($requi as $conf_iid => $conf_cod){

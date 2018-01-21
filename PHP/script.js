@@ -24,7 +24,7 @@ window.onload = function (){
     backTop.onclick = function(){
     	backtop();
     	return false;
-    }
+    };
     window.onscroll = function (){
         var scrTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrTop > 153) {
@@ -38,7 +38,7 @@ window.onload = function (){
         }
         if (!flag) {
             clearTimeout(backTime);
-        };
+        }
         flag = false;
     };
 };
@@ -47,9 +47,9 @@ function backtop() {
     var myScroll = document.documentElement.scrollTop || document.body.scrollTop;
     var speed = Math.floor(-myScroll/5);
     backTime = setTimeout( backtop, 20 );
-    if ( myScroll == 0 ) {
+    if ( myScroll === 0 ) {
         clearTimeout(backTime);
-    };
+    }
     document.documentElement.scrollTop = document.body.scrollTop = myScroll + speed;
     flag = true;
 }

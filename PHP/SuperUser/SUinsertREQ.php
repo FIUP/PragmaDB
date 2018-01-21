@@ -27,8 +27,8 @@ echo<<<END
 	</head>
 	<body>
 END;
-	$reqPage= array();
-	$reqRecord= array();
+	$reqPage= [];
+	$reqRecord= [];
 	$data= $_POST["page"];
 	if(!(empty($data)))
 	{
@@ -62,7 +62,7 @@ END;
 			}
 			if(count($reqRecord) == 9)
 			{
-				$reqPage[$pageIndex]= array($reqRecord[0],$reqRecord[1],$reqRecord[2],$reqRecord[3],$reqRecord[4],$reqRecord[5],$reqRecord[6],$reqRecord[7],$reqRecord[8]);
+				$reqPage[$pageIndex]= [$reqRecord[0],$reqRecord[1],$reqRecord[2],$reqRecord[3],$reqRecord[4],$reqRecord[5],$reqRecord[6],$reqRecord[7],$reqRecord[8]];
 				$pageIndex= $pageIndex+1;
 			}
 		}

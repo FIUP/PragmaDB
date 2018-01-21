@@ -47,8 +47,8 @@ else{
 					FROM Test t
 					WHERE t.Tipo='Unita' AND t.Esito='1'
 					ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
-	$tabletitle=array('Validazione','Sistema','Integrazione','Unità');
-	$abbr=array('validazione','sistema','integrazione','unita');
+	$tabletitle= ['Validazione','Sistema','Integrazione','Unità'];
+	$abbr= ['validazione','sistema','integrazione','unita'];
 	$title="Dettaglio Metrica - Densità di failure";
 	startpage_builder($title);
 echo<<<END

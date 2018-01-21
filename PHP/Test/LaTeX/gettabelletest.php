@@ -19,10 +19,10 @@ else{
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
 	
-	$tipi=array('Validazione','Sistema','Integrazione','Unità');
-	$hook=array('validazione','sistema','integrazione','unita');
-	$sections=array('Test di Validazione','Test di Sistema','Test di Integrazione','Test di Unità');
-	$headers=array('Id Test','Descrizione','Stato');
+	$tipi= ['Validazione','Sistema','Integrazione','Unità'];
+	$hook= ['validazione','sistema','integrazione','unita'];
+	$sections= ['Test di Validazione','Test di Sistema','Test di Integrazione','Test di Unità'];
+	$headers= ['Id Test','Descrizione','Stato'];
 	//$query_ord="CALL sortForest('Requisiti')";
     $conn=sql_conn();
 	$queries[]="SELECT t.CodAuto, CONCAT('TV',SUBSTRING(r.IdRequisito,2)), t.Descrizione, t.Implementato, t.Eseguito, t.Esito

@@ -272,7 +272,7 @@ table>tbody>tr>td {
 }
 
 table>tbody>tr>td>ul {
-	margin: 0px 0px 0px 1.5em
+	margin: 0 0 0 1.5em
 }
 
 #immagine {
@@ -527,7 +527,7 @@ Header
 	background: #fff;
 }
 
-.widget-area-left{width:312px; float: left; margin-left:0px;}
+.widget-area-left{width:312px; float: left; margin-left:0;}
 .widget-area-right{width:312px; float: right; margin-left:-312px;}
 .widget a:hover{text-decoration: underline;}
 .widget-title{font-size:16px; margin:-10px -10px 10px; padding:10px; background: #F7F7F7; border-bottom: 1px solid #eee;}
@@ -553,8 +553,8 @@ div.widget {
 .site-footer a:hover{color:#fff;}
 
 /* site info */
-.site-info{margin: 0px; margin-top:15px; text-align: center;}
-.site-info p{margin: 0px;}
+.site-info{margin: 0; margin-top:15px; text-align: center;}
+.site-info p{margin: 0;}
 .site-info .footer-nav{text-align: right; float: right;}
 .site-info .footer-nav li{padding:0 8px; list-style: none; display: inline-block; *display: inline; *zoom:1;}
 .site-info .footer-nav ul{display: none;}

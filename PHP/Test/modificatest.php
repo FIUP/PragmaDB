@@ -660,7 +660,7 @@ END;
 					FROM Metodo m JOIN Classe c ON m.Classe=c.CodAuto
 					ORDER BY CONCAT(c.PrefixNome,'::',m.Nome)"; //Query che calcola i metodi disponibili
 			$tutti_met_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_met=array();
+			$tutti_met= [];
 			while($row=mysqli_fetch_row($tutti_met_query)){
 				if($row[0]!=null){
 					$query_par="SELECT p.Nome, p.Tipo
@@ -686,7 +686,7 @@ END;
 					WHERE tm.CodTest='$id'
 					ORDER BY CONCAT(c.PrefixNome,'::',m.Nome)"; //Query che calcola i metodi disponibili
 			$met_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$met=array();
+			$met= [];
 			$listaoldmet="";
 			$i=0;
 			while($row=mysqli_fetch_row($met_query)){
@@ -710,7 +710,7 @@ END;
 				$met["$totalString"]=$row[0];
 				$listaoldmet=($listaoldmet.$row[0]).",";
 			}
-			$met_rimanenti=array();
+			$met_rimanenti= [];
 			foreach($tutti_met as $tiid => $tcod){
 				$trovato=false;
 				foreach($met as $conf_iid => $conf_cod){

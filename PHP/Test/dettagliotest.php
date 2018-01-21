@@ -55,7 +55,7 @@ echo<<<END
 				<dl class="widget">
 END;
 		//$heads: header dei campi di $row
-		$heads=array('','IdTest:','Tipo:','Descrizione:','Implementato:','Eseguito:','Esito:','Time:');
+		$heads= ['','IdTest:','Tipo:','Descrizione:','Implementato:','Eseguito:','Esito:','Time:'];
 		for($i=1;$i<4;$i++){
 			//stampo il titolo del campo
 echo<<<END
@@ -75,8 +75,8 @@ echo<<<END
 END;
 			}
 		}
-		$positive=array('','','','','Implementato','Eseguito','Superato');
-		$negative=array('','','','','Non Implementato','Non Eseguito','Non Superato');
+		$positive= ['','','','','Implementato','Eseguito','Superato'];
+		$negative= ['','','','','Non Implementato','Non Eseguito','Non Superato'];
 		for($i=4;$i<7;$i++){
 echo<<<END
 

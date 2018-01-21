@@ -171,7 +171,7 @@ END;
 	else{
 		$title="Inserisci Requisito";
 		startpage_builder($title);
-		$tipi=array('Funzionale','Vincolo','Qualita','Prestazionale');
+		$tipi= ['Funzionale','Vincolo','Qualita','Prestazionale'];
 echo<<<END
 
 			<div id="content">

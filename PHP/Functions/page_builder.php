@@ -462,8 +462,8 @@ echo<<<END
 							<td><a class="link-color-pers" href="$absurl/Test/dettagliotest.php?id=$row[0]">$row[1]</a></td>
 							<td>$row[2]</td>
 END;
-	$positive=array('','','','Implementato','Eseguito','Superato');
-	$negative=array('','','','Non Implementato','Non Eseguito','Non Superato');
+	$positive= ['','','','Implementato','Eseguito','Superato'];
+	$negative= ['','','','Non Implementato','Non Eseguito','Non Superato'];
 	for($i=3;$i<6;$i++){
 		if($row[$i]==0){
 echo<<<END

@@ -352,8 +352,8 @@ END;
 	}
 	else{
 		$id=$_GET['id'];
+        $conn=sql_conn();
 		$id=mysqli_escape_string($conn, $id);
-		$conn=sql_conn();
 		$query="SELECT c.CodAuto,c.PrefixNome,c.Nome,c.Descrizione,c.Utilizzo,c.ContenutaIn,c.UML
 				FROM Classe c
 				WHERE c.CodAuto='$id'";
@@ -425,7 +425,7 @@ END;
 					WHERE c.CodAuto<>'$id'
 					ORDER BY c.PrefixNome";
 			$tutti_clu_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_clu=array();
+			$tutti_clu= [];
 			while($row=mysqli_fetch_row($tutti_clu_query)){
 				$tutti_clu["$row[1]"]=$row[0];
 			}
@@ -434,14 +434,14 @@ END;
 					WHERE ed.Figlio='$id'
 					ORDER BY c.PrefixNome";
 			$clu_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$clu=array();
+			$clu= [];
 			$listaoldclu="";
 			$i=0;
 			while($row=mysqli_fetch_row($clu_query)){
 				$clu["$row[1]"]=$row[0];
 				$listaoldclu=($listaoldclu.$row[0]).",";
 			}
-			$clu_rimanenti=array();
+			$clu_rimanenti= [];
 			foreach($tutti_clu as $tiid => $tcod){
 				$trovato=false;
 				foreach($clu as $conf_iid => $conf_cod){
@@ -496,7 +496,7 @@ END;
 					WHERE c.CodAuto<>'$id'
 					ORDER BY c.PrefixNome";
 			$tutti_cld_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_cld=array();
+			$tutti_cld= [];
 			while($row=mysqli_fetch_row($tutti_cld_query)){
 				$tutti_cld["$row[1]"]=$row[0];
 			}
@@ -505,14 +505,14 @@ END;
 					WHERE ed.Padre='$id'
 					ORDER BY c.PrefixNome";
 			$cld_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$cld=array();
+			$cld= [];
 			$listaoldcld="";
 			$j=0;
 			while($row=mysqli_fetch_row($cld_query)){
 				$cld["$row[1]"]=$row[0];
 				$listaoldcld=($listaoldcld.$row[0]).",";
 			}
-			$cld_rimanenti=array();
+			$cld_rimanenti= [];
 			foreach($tutti_cld as $tiid => $tcod){
 				$trovato=false;
 				foreach($cld as $conf_iid => $conf_cod){
@@ -567,7 +567,7 @@ END;
 					WHERE c.CodAuto<>'$id'
 					ORDER BY c.PrefixNome";
 			$tutti_clt_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_clt=array();
+			$tutti_clt= [];
 			while($row=mysqli_fetch_row($tutti_clt_query)){
 				$tutti_clt["$row[1]"]=$row[0];
 			}
@@ -576,14 +576,14 @@ END;
 					WHERE r.A='$id'
 					ORDER BY c.PrefixNome";
 			$clt_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$clt=array();
+			$clt= [];
 			$listaoldclt="";
 			$k=0;
 			while($row=mysqli_fetch_row($clt_query)){
 				$clt["$row[1]"]=$row[0];
 				$listaoldclt=($listaoldclt.$row[0]).",";
 			}
-			$clt_rimanenti=array();
+			$clt_rimanenti= [];
 			foreach($tutti_clt as $tiid => $tcod){
 				$trovato=false;
 				foreach($clt as $conf_iid => $conf_cod){
@@ -638,7 +638,7 @@ END;
 					WHERE c.CodAuto<>'$id'
 					ORDER BY c.PrefixNome";
 			$tutti_clq_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_clq=array();
+			$tutti_clq= [];
 			while($row=mysqli_fetch_row($tutti_clq_query)){
 				$tutti_clq["$row[1]"]=$row[0];
 			}
@@ -647,14 +647,14 @@ END;
 					WHERE r.Da='$id'
 					ORDER BY c.PrefixNome";
 			$clq_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$clq=array();
+			$clq= [];
 			$listaoldclq="";
 			$l=0;
 			while($row=mysqli_fetch_row($clq_query)){
 				$clq["$row[1]"]=$row[0];
 				$listaoldclq=($listaoldclq.$row[0]).",";
 			}
-			$clq_rimanenti=array();
+			$clq_rimanenti= [];
 			foreach($tutti_clq as $tiid => $tcod){
 				$trovato=false;
 				foreach($clq as $conf_iid => $conf_cod){
@@ -710,7 +710,7 @@ END;
 					ORDER BY h.Position";
 			//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 			$tutti_requi_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$tutti_requi=array();
+			$tutti_requi= [];
 			while($row=mysqli_fetch_row($tutti_requi_query)){
 				$tutti_requi["$row[1]"]=$row[0];
 			}
@@ -719,14 +719,14 @@ END;
 					WHERE rc.CodClass='$id'
 					ORDER BY h.Position";
 			$requi_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-			$requi=array();
+			$requi= [];
 			$listaoldrequi="";
 			$m=0;
 			while($row=mysqli_fetch_row($requi_query)){
 				$requi["$row[1]"]=$row[0];
 				$listaoldrequi=($listaoldrequi.$row[0]).",";
 			}
-			$requi_rimanenti=array();
+			$requi_rimanenti= [];
 			foreach($tutti_requi as $tiid => $tcod){
 				$trovato=false;
 				foreach($requi as $conf_iid => $conf_cod){

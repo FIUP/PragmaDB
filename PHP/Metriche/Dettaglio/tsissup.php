@@ -23,8 +23,8 @@ else{
 				FROM Test t JOIN (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) ON t.Requisito=r.CodAuto
 				WHERE t.Tipo='Sistema' AND t.Eseguito='1'
 				ORDER BY h.Position";
-	$tabletitle=array('Non Eseguiti','Eseguiti');
-	$abbr=array('noneseguiti','eseguiti');
+	$tabletitle= ['Non Eseguiti','Eseguiti'];
+	$abbr= ['noneseguiti','eseguiti'];
 	$title="Dettaglio Metrica - Test di Sistema eseguiti";
 	startpage_builder($title);
 echo<<<END

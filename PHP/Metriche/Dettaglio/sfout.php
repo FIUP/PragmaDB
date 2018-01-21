@@ -33,8 +33,8 @@ else{
 			 FROM Classe c
 			 WHERE c.CodAuto NOT IN (SELECT r.Da FROM Relazione r)
 			 ORDER BY c.PrefixNome";
-	$tabletitle=array('Non Accettabili','Accettabili');
-	$abbr=array('nonaccettabili','accettabili');
+	$tabletitle= ['Non Accettabili','Accettabili'];
+	$abbr= ['nonaccettabili','accettabili'];
 	$title="Dettaglio Metrica - Structural Fan-Out";
 	startpage_builder($title);
 echo<<<END

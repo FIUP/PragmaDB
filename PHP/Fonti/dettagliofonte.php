@@ -31,7 +31,7 @@ echo<<<END
 				<h2>Dettaglio - $row[1]</h2>
 				<dl class="widget">
 END;
-		$heads=array('','IdFonte:','Nome:','Descrizione:');
+		$heads= ['','IdFonte:','Nome:','Descrizione:'];
 		for($i=1;$i<4;$i++){
 echo<<<END
 

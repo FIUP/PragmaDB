@@ -29,8 +29,8 @@ else{
 				GROUP BY m.Classe
 				HAVING COUNT(*)<8
 				ORDER BY COUNT(*) DESC, c.PrefixNome ASC";
-	$tabletitle=array('Non Accettabili','Accettabili','Ottimali');
-	$abbr=array('nonaccettabili','accettabili','ottimali');
+	$tabletitle= ['Non Accettabili','Accettabili','Ottimali'];
+	$abbr= ['nonaccettabili','accettabili','ottimali'];
 	$title="Dettaglio Metrica - Numero di metodi per classe";
 	startpage_builder($title);
 echo<<<END

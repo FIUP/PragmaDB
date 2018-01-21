@@ -15,14 +15,14 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$conn=sql_conn();
-	$nome=array("Requisiti Obbligatori Soddisfatti","Requisiti Accettati Soddisfatti","Requisiti Non Accettati Soddisfatti","SFIN - Ottimalità","SFOUT - Non Accettabilità","Metodi per classe - Non Accettabilità", "Parametri per metodo - Non Accettabilità","Componenti integrate","Test di Unità eseguiti","Test di Integrazione eseguiti","Test di Sistema eseguiti","Test di Validazione eseguiti","Test superati","Completezza Implementazione Funzionale","Densità di failure");
-	$unita=array("%","%","%","%","%","%","%","%","%","%","%","%","%","%","%","%");
-	$dettaglio=array("robsod","racsod","rnacsod","sfin","sfout","nmetcl","nparmet","comint","tuniese","tintese","tsissup","tvalese","denfailure","comimplfunz","denfailure");
-	$value=array();
-	$omin=array(100,100,50,50,0,0,0,100,100,80,80,100,100,100,0);
-	$omax=array(100,100,100,9999999,3,5,3,100,100,100,100,100,100,100,0);
-	$amin=array(100,100,0,30,0,0,0,100,90,70,70,100,90,100,0);
-	$amax=array(100,100,100,9999999,6,15,5,100,100,100,100,100,100,100,10);
+	$nome= ["Requisiti Obbligatori Soddisfatti","Requisiti Accettati Soddisfatti","Requisiti Non Accettati Soddisfatti","SFIN - Ottimalità","SFOUT - Non Accettabilità","Metodi per classe - Non Accettabilità", "Parametri per metodo - Non Accettabilità","Componenti integrate","Test di Unità eseguiti","Test di Integrazione eseguiti","Test di Sistema eseguiti","Test di Validazione eseguiti","Test superati","Completezza Implementazione Funzionale","Densità di failure"];
+	$unita= ["%","%","%","%","%","%","%","%","%","%","%","%","%","%","%","%"];
+	$dettaglio= ["robsod","racsod","rnacsod","sfin","sfout","nmetcl","nparmet","comint","tuniese","tintese","tsissup","tvalese","denfailure","comimplfunz","denfailure"];
+	$value= [];
+	$omin= [100,100,50,50,0,0,0,100,100,80,80,100,100,100,0];
+	$omax= [100,100,100,9999999,3,5,3,100,100,100,100,100,100,100,0];
+	$amin= [100,100,0,30,0,0,0,100,90,70,70,100,90,100,0];
+	$amax= [100,100,100,9999999,6,15,5,100,100,100,100,100,100,100,10];
 	//Requisiti Obbligatori Soddisfatti
 	$query="SELECT COUNT(*) FROM Requisiti r WHERE r.Importanza='Obbligatorio' AND r.Soddisfatto='1'";
 	$query_app="SELECT COUNT(*) FROM Requisiti r WHERE r.Importanza='Obbligatorio'";

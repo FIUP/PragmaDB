@@ -33,8 +33,8 @@ else{
 			 FROM Metodo m JOIN Classe c ON m.Classe=c.CodAuto
 			 WHERE m.CodAuto NOT IN (SELECT DISTINCT p.Metodo FROM Parametro p)
 			 ORDER BY Prefix ASC";
-	$tabletitle=array('Non Accettabili','Accettabili');
-	$abbr=array('nonaccettabili','accettabili');
+	$tabletitle= ['Non Accettabili','Accettabili'];
+	$abbr= ['nonaccettabili','accettabili'];
 	$title="Dettaglio Metrica - Numero di parametri per metodo";
 	startpage_builder($title);
 echo<<<END

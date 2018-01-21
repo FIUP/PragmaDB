@@ -32,7 +32,7 @@ echo<<<END
 				<dl class="widget">
 END;
 		//$heads: header dei campi di $row
-		$heads=array('','PrefixNome:','Nome:','Descrizione:','Utilizzo','ContenutaIn:','Diagramma:','Time:');
+		$heads= ['','PrefixNome:','Nome:','Descrizione:','Utilizzo','ContenutaIn:','Diagramma:','Time:'];
 		for($i=1;$i<8;$i++){
 			//stampo il titolo del campo
 echo<<<END

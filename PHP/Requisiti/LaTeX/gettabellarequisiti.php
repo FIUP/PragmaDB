@@ -19,9 +19,9 @@ else{
 	header('Expires: 0');
 	header('Cache-Control: no-cache, must-revalidate');
 	
-	$tipi=array('Funzionale','Prestazionale','Qualita','Vincolo');
-	$sections=array('Requisiti Funzionali','Requisiti Prestazionali','Requisiti di Qualità','Requisiti di Vincolo');
-	$headers=array('Id Requisito','Importanza','Descrizione','Stato');
+	$tipi= ['Funzionale','Prestazionale','Qualita','Vincolo'];
+	$sections= ['Requisiti Funzionali','Requisiti Prestazionali','Requisiti di Qualità','Requisiti di Vincolo'];
+	$headers= ['Id Requisito','Importanza','Descrizione','Stato'];
 	$conn=sql_conn();
 	//$query_ord="CALL sortForest('Requisiti')";
 	//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));

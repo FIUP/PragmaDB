@@ -15,8 +15,8 @@ if(empty($_SESSION['user'])){
 }
 else{
 	$conn=sql_conn();
-	$tipi=array('Validazione','Sistema','Integrazione','Unità');
-	$abbr=array('validazione','sistema','integrazione','unita');
+	$tipi= ['Validazione','Sistema','Integrazione','Unità'];
+	$abbr= ['validazione','sistema','integrazione','unita'];
 	//$query_ord="CALL sortForest('Requisiti')";
 	$queries[]="SELECT t.CodAuto, CONCAT('TV',SUBSTRING(r.IdRequisito,2)), t.Descrizione, t.Implementato, t.Eseguito, t.Esito, t.Tipo, r.IdRequisito, r.CodAuto
 				FROM Test t JOIN (_MapRequisiti h JOIN Requisiti r ON h.CodAuto=r.CodAuto) ON t.Requisito=r.CodAuto

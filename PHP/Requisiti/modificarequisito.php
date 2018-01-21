@@ -298,7 +298,7 @@ END;
 		if($requidb[0]==$id){
 			$title="Modifica Requisito - $requidb[1]";
 			startpage_builder($title);
-			$tipi=array('Funzionale','Vincolo','Qualita','Prestazionale');
+			$tipi= ['Funzionale','Vincolo','Qualita','Prestazionale'];
 echo<<<END
 
 			<div id="content">
@@ -552,7 +552,7 @@ END;
 				ORDER BY h.Position";
 		//$ord=mysqli_query($conn, $query_ord) or fail("Query fallita: ".mysqli_error($conn));
 		$tutti_uc_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-		$tutti_uc=array();
+		$tutti_uc= [];
 		while($row=mysqli_fetch_row($tutti_uc_query)){
 			$tutti_uc["$row[1]"]=$row[0];
 		}
@@ -561,14 +561,14 @@ END;
 				WHERE ruc.CodReq='$id'
 				ORDER BY h.Position";
 		$uc_query=mysqli_query($conn,$query) or fail("Query fallita: ".mysqli_error($conn));
-		$uc=array();
+		$uc= [];
 		$listaolduc="";
 		$i=0;
 		while($row=mysqli_fetch_row($uc_query)){
 			$uc["$row[1]"]=$row[0];
 			$listaolduc=($listaolduc.$row[0]).",";
 		}
-		$uc_rimanenti=array();
+		$uc_rimanenti= [];
 		foreach($tutti_uc as $tiid => $tcod){
 			$trovato=false;
 			foreach($uc as $conf_iid => $conf_cod){

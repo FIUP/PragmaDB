@@ -22,8 +22,8 @@ else{
 				FROM Test t
 				WHERE t.Tipo='Unita' AND t.Eseguito='1'
 				ORDER BY CONVERT(SUBSTRING(t.IdTest,3),UNSIGNED INT)";
-	$tabletitle=array('Non Eseguiti','Eseguiti');
-	$abbr=array('noneseguiti','eseguiti');
+	$tabletitle= ['Non Eseguiti','Eseguiti'];
+	$abbr= ['noneseguiti','eseguiti'];
 	$title="Dettaglio Metrica - Test di Unità eseguiti";
 	startpage_builder($title);
 echo<<<END
